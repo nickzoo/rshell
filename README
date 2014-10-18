@@ -1,0 +1,25 @@
+( Overview )
+rshell is a command line program that executes other programs from input using the fork, execvp, and wait system calls. Like bash, it supports arguments, comments, and the connectors ";", "||", and "&&."
+
+( Instructions )
+From terminal:
+git clone https://github.com/nickzoo/rshell.git
+cd rshell
+make
+bin/rshell
+
+( Files )
+LICENSE
+Makefile
+README
+src/
+	rshell.cpp
+tests/
+	exec.script
+
+( Bugs )
+Quotation marks are not treated as special characters.
+e.g., echo "hello    world" will print: "hello world"
+In bash, it would print: hello    world.
+
+There are limits to input size: lines can't exceed ~1024 characters (or 1/3 that in the worst case, due to preprocessing), command count can't exceed 15, and argument count can't exceed ~64 per command. If overflow occurs, the program will print an error message and prompt for next input. These limits can be altered by changing the macros at the beginning of the source file.

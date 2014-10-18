@@ -1,0 +1,130 @@
+Script started on Fri 17 Oct 2014 11:43:51 PM PDT
+~
+lxu003@well $ cd[K[Ks[Kcs100/[K[K[K[K[K[Kcd cs100/rshell/
+~/cs100/rshell
+lxu003@well $ bin/rshell 
+lxu003@well.cs.ucr.edu$ #one cmd no args
+lxu003@well.cs.ucr.edu$ ls
+bin  LICENSE  Makefile	README	src  tests
+lxu003@well.cs.ucr.edu$ clear
+[H[2Jlxu003@well.cs.ucr.edu$ 
+lxu003@well.cs.ucr.edu$ #one cmd with args
+lxu003@well.cs.ucr.edu$ echo test pass
+test pass
+lxu003@well.cs.ucr.edu$ 
+lxu003@well.cs.ucr.edu$ #comments
+lxu003@well.cs.ucr.edu$ ls -l#-a this is comment
+total 24
+drwx------ 2 lxu003 csmajs 4096 Oct 17 23:31 bin
+-rw------- 1 lxu003 csmajs 1075 Oct 17 17:05 LICENSE
+-rw------- 1 lxu003 csmajs  233 Oct 17 17:05 Makefile
+-rw------- 1 lxu003 csmajs  935 Oct 17 17:05 README
+drwx------ 2 lxu003 csmajs 4096 Oct 17 17:05 src
+drwx------ 2 lxu003 csmajs 4096 Oct 17 23:43 tests
+lxu003@well.cs.ucr.edu$ 
+lxu003@well.cs.ucr.edu$ #;
+lxu003@well.cs.ucr.edu$ ls; pwd
+bin  LICENSE  Makefile	README	src  tests
+/home/csmajs/lxu003/cs100/rshell
+lxu003@well.cs.ucr.edu$ ls ;pwd
+bin  LICENSE  Makefile	README	src  tests
+/home/csmajs/lxu003/cs100/rshell
+lxu003@well.cs.ucr.edu$ 
+lxu003@well.cs.ucr.edu$ #||
+lxu003@well.cs.ucr.edu$ true || ls
+lxu003@well.cs.ucr.edu$ false || ls
+bin  LICENSE  Makefile	README	src  tests
+lxu003@well.cs.ucr.edu$ 
+lxu003@well.cs.ucr.edu$ #&&
+lxu003@well.cs.ucr.edu$ true && ls
+bin  LICENSE  Makefile	README	src  tests
+lxu003@well.cs.ucr.edu$ false && ls
+lxu003@well.cs.ucr.edu$ 
+lxu003@well.cs.ucr.edu$ #putting it together
+lxu003@well.cs.ucr.edu$ pwd; true && mkdir x; false && echo fail; true || echo fail; false || mkdir y
+/home/csmajs/lxu003/cs100/rshell
+lxu003@well.cs.ucr.edu$ ls; rmdir x && rmdir y; ls
+bin  LICENSE  Makefile	README	src  tests  x  y
+bin  LICENSE  Makefile	README	src  tests
+lxu003@well.cs.ucr.edu$ 
+lxu003@well.cs.ucr.edu$ #script inside a script
+lxu003@well.cs.ucr.edu$ script scriptception
+Script started, file is scriptception
+~
+lxu003@well $ echo echo echo echo ... echo
+echo echo echo ... echo
+~
+lxu003@well $ exit
+exit
+Script done, file is scriptception
+lxu003@well.cs.ucr.edu$ rm scriptception
+lxu003@well.cs.ucr.edu$ 
+lxu003@well.cs.ucr.edu$ #rshell inside rshell
+lxu003@well.cs.ucr.edu$ bin/rshell
+lxu003@well.cs.ucr.edu$ echo I'm in rshell in rshell
+I'm in rshell in rshell
+lxu003@well.cs.ucr.edu$ exit
+lxu003@well.cs.ucr.edu$ 
+lxu003@well.cs.ucr.edu$ #let's break things
+lxu003@well.cs.ucr.edu$ #quotation marks
+lxu003@well.cs.ucr.edu$ echo "hello      world"
+"hello world"
+lxu003@well.cs.ucr.edu$ 
+lxu003@well.cs.ucr.edu$ #connectors syntax
+lxu003@well.cs.ucr.edu$ ;ls
+syntax error: connector must be preceded by a command
+lxu003@well.cs.ucr.edu$ 
+lxu003@well.cs.ucr.edu$ #max chars for line input is 1022: no overflow
+lxu003@well.cs.ucr.edu$ ls                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          -l
+total 24
+drwx------ 2 lxu003 csmajs 4096 Oct 17 23:31 bin
+-rw------- 1 lxu003 csmajs 1075 Oct 17 17:05 LICENSE
+-rw------- 1 lxu003 csmajs  233 Oct 17 17:05 Makefile
+-rw------- 1 lxu003 csmajs  935 Oct 17 17:05 README
+drwx------ 2 lxu003 csmajs 4096 Oct 17 17:05 src
+drwx------ 2 lxu003 csmajs 4096 Oct 17 23:43 tests
+lxu003@well.cs.ucr.edu$ #1023 chars: overflow
+lxu003@well.cs.ucr.edu$ ls                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           -l
+overflow: too many characters
+lxu003@well.cs.ucr.edu$ 
+lxu003@well.cs.ucr.edu$ #during preprocessing, special characters are sandwiched between spaces
+lxu003@well.cs.ucr.edu$ #e.g., "#" is changed to " # " and ";" is changed to " ; "
+lxu003@well.cs.ucr.edu$ #1 '#' + 339 ';' + 2 '0' = 1022 characters: no overflow
+lxu003@well.cs.ucr.edu$ #00;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+lxu003@well.cs.ucr.edu$ #341 ';' = 1023 characters: overflow
+lxu003@well.cs.ucr.edu$ ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+overflow: too many characters due to preprocessing
+lxu003@well.cs.ucr.edu$ 
+lxu003@well.cs.ucr.edu$ #max commands is 15: no overflow
+lxu003@well.cs.ucr.edu$ ls;ls;ls;ls;ls;ls;ls;ls;ls;ls;ls;ls;ls;ls;ls
+bin  LICENSE  Makefile	README	src  tests
+bin  LICENSE  Makefile	README	src  tests
+bin  LICENSE  Makefile	README	src  tests
+bin  LICENSE  Makefile	README	src  tests
+bin  LICENSE  Makefile	README	src  tests
+bin  LICENSE  Makefile	README	src  tests
+bin  LICENSE  Makefile	README	src  tests
+bin  LICENSE  Makefile	README	src  tests
+bin  LICENSE  Makefile	README	src  tests
+bin  LICENSE  Makefile	README	src  tests
+bin  LICENSE  Makefile	README	src  tests
+bin  LICENSE  Makefile	README	src  tests
+bin  LICENSE  Makefile	README	src  tests
+bin  LICENSE  Makefile	README	src  tests
+bin  LICENSE  Makefile	README	src  tests
+lxu003@well.cs.ucr.edu$ #16 commands: overflow
+lxu003@well.cs.ucr.edu$ ls;ls;ls;ls;ls;ls;ls;ls;ls;ls;ls;ls;ls;ls;ls;ls;
+overflow: too many commands
+lxu003@well.cs.ucr.edu$ 
+lxu003@well.cs.ucr.edu$ #max args is 63: no overflow
+lxu003@well.cs.ucr.edu$ echo 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0  0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+lxu003@well.cs.ucr.edu$ #64 args: overflow
+lxu003@well.cs.ucr.edu$ echo 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0  0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+overflow: too many arguments
+lxu003@well.cs.ucr.edu$ exit
+~/cs100/rshell
+lxu003@well $ exit
+exit
+
+Script done on Fri 17 Oct 2014 11:46:35 PM PDT
