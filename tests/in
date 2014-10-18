@@ -1,0 +1,48 @@
+cd cs100/rshell
+bin/rshell
+
+#one command no arguments
+ls
+
+#one command with arguments
+echo test pass
+
+#comment
+ls -l #-a
+
+#comment syntax
+ls -l#-a
+
+#connectors
+ls; pwd
+true &&ls
+false && ls
+true || ls
+false ||ls
+true && mkdir x; false && echo fail
+true || echo fail; false && mkdir y
+ls; rmdir x && rmdir y; ls
+
+#connector syntax
+;ls
+
+#script inside a script
+script scriptception
+echo echo echo echo ... echo
+exit
+rm scriptception
+
+#rshell inside rshell
+bin/rshell
+echo I'm in rshell in rshell
+exit
+
+#bugs
+#exit must be first command
+ls; exit
+
+#quotation marks
+echo "  hello      world  "
+
+#exit
+exit

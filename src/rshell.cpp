@@ -1,107 +1,109 @@
-#include <stdio.h> //printf, fgets, stdin
+#include <iostream>
+#include <sstream>
+#include <string>
+#include <vector>
 #include <stdlib.h> //NULL, exit
-#include <string.h> //strcpy, strtok
+#include <string.h> //strcmp
 #include <sys/wait.h> //waitpid
 #include <unistd.h> //fork, execvp
+using namespace std;
 
-#define DELIMITERS " \t\n" //for strtok
-#define MAX_NAME 16 //login and hostname
-#define MAX_CHARS 1024 //line of input
-#define MAX_CMDS 16 //commands delimited by connectors
-#define MAX_ARGS 64 //arguments for each command
-#define PREP_EXCEEDED 1
-#define CMDS_EXCEEDED 2
-#define ARGS_EXCEEDED 3
-#define CONNECTOR_ERROR 4
-#define PREP_EXCEEDED_MESSAGE \
-	"overflow: too many characters due to preprocessing\n"
-#define CMDS_EXCEEDED_MESSAGE \
-	"overflow: too many commands\n"
-#define ARGS_EXCEEDED_MESSAGE \
-	"overflow: too many arguments\n"
+#define MAX_LENGTH 256 //for login and host name
 #define CONNECTOR_ERROR_MESSAGE \
-	"syntax error: connector must be preceded by a command\n"
-#define LINE_EXCEEDED_MESSAGE \
-	"overflow: too many characters\n"
+	"syntax error: connector must be preceded by a command"
 
-//separate special characters by whitespace for tokenization
-int preprocess(char line[]) {
-	char processed[MAX_CHARS + 1];
-	int i = 0, j = 0;
-	while (line[i] != '\0') {
-		if (line[i] == ';' || line[i] == '#') {
-			processed[j++] = ' ';
-			processed[j++] = line[i++];
-			processed[j++] = ' ';
+//separate special characters with whitespace for tokenization
+//WARNING: this function calls new
+string preprocess(const string& line) {
+	string processed = "";
+	for (int i = 0; i < line.size(); ++i) {
+		if (line[i] == ';')
+			processed += " ; ";
+		else if (line[i] == '&' && i+1 < line.size() && line[i+1] == '&') {
+			processed += " && ";
+			++i;
 		}
-		else if ((line[i] == '&' && line[i+1] == '&')
-				|| (line[i] == '|' && line[i+1] == '|')) {
-			processed[j++] = ' ';
-			processed[j++] = line[i++];
-			processed[j++] = line[i++];
-			processed[j++] = ' ';
+		else if (line[i] == '|' && i+1 < line.size() && line[i+1] == '|') {
+			processed += " || ";
+			++i;
 		}
 		else
-			processed[j++] = line[i++];
-		if (j > MAX_CHARS-1)
-			return PREP_EXCEEDED;
+			processed += line[i];
 	}
-	processed[j] = '\0';
-	strcpy(line, processed);
-	return 0;
+	return processed;
 }
 
 //raw input is parsed into an array of commands
-int parse(char line[], char *cmds[][MAX_ARGS]) {
-	int error = preprocess(line);
-	if (error)
-		return PREP_EXCEEDED;
-	int c = 0, a = 0; //c for command index, a for argument index
-	char *token = strtok(line, DELIMITERS);
-	while (token != NULL) {
-		if (strcmp(token, "#") == 0)
+int parse(string& line, vector< vector<string> >& cmd) {
+	line = preprocess(line);
+	cmd.push_back(vector<string>());
+	stringstream ss(line);
+	string token;
+	int i = 0;
+	while (ss >> token) {
+		if (token == "#")
 			break;
-		if (strcmp(token, ";") == 0 || strcmp(token, "||") == 0
-				|| strcmp(token, "&&") == 0) {
-			if (a == 0)
-				return CONNECTOR_ERROR;
-			cmds[c++][a] = NULL;
-			if (c >= MAX_CMDS-1)
-				return CMDS_EXCEEDED;
-			a = 0;
+		if (token == ";" || token == "||" || token == "&&") {
+			if (cmd[i].empty())
+				return 1;
+			cmd.push_back(vector<string>());
+			++i;
 		}
-		cmds[c][a++] = token;
-		if (a > MAX_ARGS-1)
-			return ARGS_EXCEEDED;
-		token = strtok(NULL, DELIMITERS);
+		cmd[i].push_back(token);
 	}
-	cmds[c][a] = NULL;
-	cmds[c+1][0] = NULL;
 	return 0;
 }
 
+//converts vector of vector of strings to vector of array of cstrings
+//WARNING: calls new
+vector<char**> c_compatible(const vector< vector<string> >& cmd) {
+	vector<char**> c_cmd;
+	for (int i = 0; i < cmd.size(); ++i) {
+		char **command = new char*[cmd[i].size()+1];
+		int j;
+		for (j = 0; j < cmd[i].size(); ++j) {
+			command[j] = new char[cmd[i][j].size()];
+			memcpy(command[j], cmd[i][j].c_str(), cmd[i][j].size()+1);
+		}
+		command[j] = NULL;
+		c_cmd.push_back(command);
+	}
+	return c_cmd;
+}
+
+//deletes c compatible array of cstrings
+void c_delete(const vector< vector<string> >& cmd, vector<char**>& c_cmd) {
+	for (int i = 0; i < cmd.size(); ++i) {
+		for (int j = 0; j <= cmd[i].size(); ++j) {
+			delete[] c_cmd[i][j];
+		}
+		delete c_cmd[i];
+	}
+}
+
 //execute commands using fork, execvp, and waitpid
-void execute(char *cmds[][MAX_ARGS]) {
+void execute(const vector< vector<string> >& cmd) {
+	vector<char**> c_cmd = c_compatible(cmd);
 	int status;
-	for (int c = 0; cmds[c][0]; ++c) {
+	for (int i = 0; i < c_cmd.size(); ++i) {
 		int pid = fork();
 		if (pid < 0) {
 			perror("fork");
 			exit(1);
 		}
 		else if (pid == 0) {
-			if (c == 0) {
-				execvp(cmds[c][0], cmds[c]);
-				perror(cmds[c][0]);
+			if (i == 0) {
+				execvp(c_cmd[i][0], c_cmd[i]);
+				perror("execvp");
 				exit(1);
 			}
 			else {
-				if (strcmp(cmds[c][0], "||") == 0 && status == 0)
+				if (strcmp(c_cmd[i][0], "||") == 0 && status == 0)
 					exit(0);
-				if (strcmp(cmds[c][0], "&&") == 0 && status != 0)
+				if (strcmp(c_cmd[i][0], "&&") == 0 && status != 0)
 					exit(0);
-				execvp(cmds[c][1], cmds[c]+1);
-				perror(cmds[c][0]);
+				execvp(c_cmd[i][1], c_cmd[i]+1);
+				perror("execvp");
 				exit(1);
 			}
 		}
@@ -110,40 +112,31 @@ void execute(char *cmds[][MAX_ARGS]) {
 				perror("waitpid");
 		}
 	}
+	c_delete(cmd, c_cmd);
 }
 
-//remove leftovers from stdin after line overflows
-void flush() {
-	int c;
-	while ((c = getchar()) != '\n' && c != EOF);
+void exit_check(const string& line) {
+	if (line.size() >= 4 && line[0] == 'e' && line[1] == 'x'
+						 && line[2] == 'i' && line[3] == 't')
+		exit(0);
 }
 
 //prompt for input, get input, parse, execute, repeat
 int main() {
-	const char *errors[] = {PREP_EXCEEDED_MESSAGE, CMDS_EXCEEDED_MESSAGE,
-		ARGS_EXCEEDED_MESSAGE, CONNECTOR_ERROR_MESSAGE};
-	char line[MAX_CHARS];
-	char *cmds[MAX_CMDS][MAX_ARGS];
 	while (1) {
-		char login[MAX_NAME];
-		getlogin_r(login, MAX_NAME);
-		char hostname[MAX_NAME];
-		gethostname(hostname, MAX_NAME);
-		printf("%s@%s$ ", login, hostname);
-		fgets(line, sizeof(line), stdin);
-		if (strlen(line) >= MAX_CHARS-1 && line[strlen(line)-1] != '\n') {
-			printf(LINE_EXCEEDED_MESSAGE);
-			flush();
+		char *login = getlogin();
+		char hostname[MAX_LENGTH];
+		gethostname(hostname, MAX_LENGTH);
+		cout << login << "@" << hostname << "$ ";
+		string line;
+		getline(cin, line);
+		exit_check(line);
+		vector< vector<string> > cmd;
+		if (parse(line, cmd)) {
+			cout << CONNECTOR_ERROR_MESSAGE <<  endl;
 			continue;
 		}
-		int error = parse(line, cmds);
-		if (error) {
-			printf("%s", errors[error-1]);
-			continue;
-		}
-		if (strcmp(line, "exit") == 0)
-			exit(0);
-		execute(cmds);
+		execute(cmd);
 	}
 	return 0;
 }
