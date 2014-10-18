@@ -113,12 +113,6 @@ void execute(const vector< vector<string> >& cmd) {
 	c_delete(cmd, c_cmd);
 }
 
-void exit_check(const string& line) {
-	if (line.size() >= 4 && line[0] == 'e' && line[1] == 'x'
-						 && line[2] == 'i' && line[3] == 't')
-		exit(0);
-}
-
 //prompt for input, get input, parse, execute, repeat
 int main() {
 	while (1) {
@@ -128,7 +122,8 @@ int main() {
 		cout << login << "@" << hostname << "$ ";
 		string line;
 		getline(cin, line);
-		exit_check(line);
+		if (line == "exit")
+			exit(0);
 		vector< vector<string> > cmd;
 		if (parse(line, cmd)) {
 			cout << CONNECTOR_ERROR_MESSAGE <<  endl;
