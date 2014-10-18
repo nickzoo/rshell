@@ -3,7 +3,7 @@
 #include <string>
 #include <vector>
 #include <stdlib.h> //NULL, exit
-#include <string.h> //strcmp
+#include <string.h> //memcpy, strcmp
 #include <sys/wait.h> //waitpid
 #include <unistd.h> //fork, execvp
 using namespace std;
