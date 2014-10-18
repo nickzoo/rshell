@@ -13,7 +13,6 @@ using namespace std;
 	"syntax error: connector must be preceded by a command"
 
 //separate special characters with whitespace for tokenization
-//WARNING: this function calls new
 string preprocess(const string& line) {
 	string processed = "";
 	for (int i = 0; i < line.size(); ++i) {
@@ -55,7 +54,6 @@ int parse(string& line, vector< vector<string> >& cmd) {
 }
 
 //converts vector of vector of strings to vector of array of cstrings
-//WARNING: calls new
 vector<char**> c_compatible(const vector< vector<string> >& cmd) {
 	vector<char**> c_cmd;
 	for (int i = 0; i < cmd.size(); ++i) {
