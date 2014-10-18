@@ -1,5 +1,5 @@
 ( Overview )
-rshell is a command line program that executes other programs from input using the fork, execvp, and wait system calls. Like bash, it supports arguments, comments, and the connectors ";", "||", and "&&."
+rshell is a command line program that executes other programs from input using the fork, execvp, and wait system calls. Like bash, it supports arguments, comments, and the connectors ";", "||", and "&&".
 
 ( Instructions )
 From terminal:
