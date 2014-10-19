@@ -62,7 +62,7 @@ vector<char**> c_compatible(const vector< vector<string> >& cmd) {
 		char **command = new char*[cmd[i].size()+1];
 		size_t j;
 		for (j = 0; j < cmd[i].size(); ++j) {
-			command[j] = new char[cmd[i][j].size()];
+			command[j] = new char[cmd[i][j].size()+1];
 			memcpy(command[j], cmd[i][j].c_str(), cmd[i][j].size()+1);
 		}
 		command[j] = NULL;
@@ -77,7 +77,7 @@ void c_delete(const vector< vector<string> >& cmd, vector<char**>& c_cmd) {
 		for (size_t j = 0; j <= cmd[i].size(); ++j) {
 			delete[] c_cmd[i][j];
 		}
-		delete c_cmd[i];
+		delete[] c_cmd[i];
 	}
 }
 
@@ -125,7 +125,7 @@ int main() {
 		string line;
 		getline(cin, line);
 		if (line == "exit")
-			exit(0);
+			break;
 		vector< vector<string> > cmd;
 		if (parse(line, cmd)) {
 			cout << CONNECTOR_ERROR_MESSAGE <<  endl;
