@@ -20,7 +20,7 @@ false && ls
 true || ls
 false ||ls
 true && mkdir x; false && echo fail
-true || echo fail; false && mkdir y
+true || echo fail; false || mkdir y
 ls; rmdir x && rmdir y; ls
 
 #connector syntax

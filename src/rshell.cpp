@@ -15,8 +15,10 @@ using namespace std;
 //separate special characters with whitespace for tokenization
 string preprocess(const string& line) {
 	string processed = "";
-	for (int i = 0; i < line.size(); ++i) {
-		if (line[i] == ';')
+	for (size_t i = 0; i < line.size(); ++i) {
+		if (line[i] == '#')
+			processed += "# ";
+		else if (line[i] == ';')
 			processed += " ; ";
 		else if (line[i] == '&' && i+1 < line.size() && line[i+1] == '&') {
 			processed += " && ";
@@ -56,9 +58,9 @@ int parse(string& line, vector< vector<string> >& cmd) {
 //converts vector of vector of strings to vector of array of cstrings
 vector<char**> c_compatible(const vector< vector<string> >& cmd) {
 	vector<char**> c_cmd;
-	for (int i = 0; i < cmd.size(); ++i) {
+	for (size_t i = 0; i < cmd.size(); ++i) {
 		char **command = new char*[cmd[i].size()+1];
-		int j;
+		size_t j;
 		for (j = 0; j < cmd[i].size(); ++j) {
 			command[j] = new char[cmd[i][j].size()];
 			memcpy(command[j], cmd[i][j].c_str(), cmd[i][j].size()+1);
@@ -71,8 +73,8 @@ vector<char**> c_compatible(const vector< vector<string> >& cmd) {
 
 //deletes c compatible array of cstrings
 void c_delete(const vector< vector<string> >& cmd, vector<char**>& c_cmd) {
-	for (int i = 0; i < cmd.size(); ++i) {
-		for (int j = 0; j <= cmd[i].size(); ++j) {
+	for (size_t i = 0; i < cmd.size(); ++i) {
+		for (size_t j = 0; j <= cmd[i].size(); ++j) {
 			delete[] c_cmd[i][j];
 		}
 		delete c_cmd[i];
@@ -83,7 +85,7 @@ void c_delete(const vector< vector<string> >& cmd, vector<char**>& c_cmd) {
 void execute(const vector< vector<string> >& cmd) {
 	vector<char**> c_cmd = c_compatible(cmd);
 	int status;
-	for (int i = 0; i < c_cmd.size(); ++i) {
+	for (size_t i = 0; i < c_cmd.size(); ++i) {
 		int pid = fork();
 		if (pid < 0) {
 			perror("fork");
