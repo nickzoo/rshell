@@ -19,7 +19,7 @@ tests/
 	in
 
 ( Bugs )
-The "exit" command will only work if it is the first command given.
+The exit command will work only if the input is exactly "exit". e.g., "ls; exit", "exit;", "exit ", etc. will not be recognized.
 
 Quotation marks are not treated as special characters.
 e.g., echo "hello    world" will print: "hello world"
