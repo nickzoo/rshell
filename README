@@ -24,5 +24,3 @@ The "exit" command will only work if it is the first command given.
 Quotation marks are not treated as special characters.
 e.g., echo "hello    world" will print: "hello world"
 In bash, it would print: hello    world
-
-hostname can be at most 255 characters.
