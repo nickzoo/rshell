@@ -2,6 +2,7 @@
 #include <sstream>
 #include <string>
 #include <vector>
+#include <stdio.h> //perror
 #include <stdlib.h> //NULL, exit
 #include <string.h> //memcpy, strcmp
 #include <sys/wait.h> //waitpid
