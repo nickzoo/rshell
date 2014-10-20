@@ -5,7 +5,7 @@ bin/rshell
 ls
 
 #one command with arguments
-echo test pass
+echo  test  pass
 
 #comment
 ls -l #-a
@@ -38,8 +38,9 @@ echo I'm in rshell in rshell
 exit
 
 #bugs
-#exit must be first command
-ls; exit
+#exit must be exactly "exit"
+exit;
+ exit
 
 #quotation marks
 echo "  hello      world  "
