@@ -1,4 +1,4 @@
-Script started on Sat 18 Oct 2014 01:06:41 PM PDT
+Script started on Mon 20 Oct 2014 10:02:52 AM PDT
 ~
 lxu003@well $ cd cs100/rshell
 ~/cs100/rshell
@@ -9,18 +9,18 @@ lxu003@well.cs.ucr.edu$ ls
 bin  LICENSE  Makefile	README	src  tests
 lxu003@well.cs.ucr.edu$ 
 lxu003@well.cs.ucr.edu$ #one command with arguments
-lxu003@well.cs.ucr.edu$ echo test pass
+lxu003@well.cs.ucr.edu$ echo  test  pass
 test pass
 lxu003@well.cs.ucr.edu$ 
 lxu003@well.cs.ucr.edu$ #comment
 lxu003@well.cs.ucr.edu$ ls -l #-a
 total 24
-drwx------ 2 lxu003 csmajs 4096 Oct 18 13:03 bin
--rw------- 1 lxu003 csmajs 1075 Oct 17 23:58 LICENSE
--rw------- 1 lxu003 csmajs  233 Oct 17 23:58 Makefile
--rw------- 1 lxu003 csmajs  673 Oct 18 12:58 README
-drwx------ 2 lxu003 csmajs 4096 Oct 18 13:03 src
-drwx------ 2 lxu003 csmajs 4096 Oct 18 13:06 tests
+drwx------ 2 lxu003 csmajs 4096 Oct 20 10:02 bin
+-rw------- 1 lxu003 csmajs 1075 Oct 19 13:46 LICENSE
+-rw------- 1 lxu003 csmajs  233 Oct 19 13:46 Makefile
+-rw------- 1 lxu003 csmajs  693 Oct 19 13:46 README
+drwx------ 2 lxu003 csmajs 4096 Oct 20 08:36 src
+drwx------ 2 lxu003 csmajs 4096 Oct 20 10:02 tests
 lxu003@well.cs.ucr.edu$ 
 lxu003@well.cs.ucr.edu$ #comment syntax
 lxu003@well.cs.ucr.edu$ ls -l#-a
@@ -66,9 +66,10 @@ I'm in rshell in rshell
 lxu003@well.cs.ucr.edu$ exit
 lxu003@well.cs.ucr.edu$ 
 lxu003@well.cs.ucr.edu$ #bugs
-lxu003@well.cs.ucr.edu$ #exit must be first command
-lxu003@well.cs.ucr.edu$ ls; exit
-bin  LICENSE  Makefile	README	src  tests
+lxu003@well.cs.ucr.edu$ #exit must be exactly "exit"
+lxu003@well.cs.ucr.edu$ exit;
+execvp: No such file or directory
+lxu003@well.cs.ucr.edu$  exit
 execvp: No such file or directory
 lxu003@well.cs.ucr.edu$ 
 lxu003@well.cs.ucr.edu$ #quotation marks
@@ -81,4 +82,4 @@ lxu003@well.cs.ucr.edu$ exit
 lxu003@well $ exit
 exit
 
-Script done on Sat 18 Oct 2014 01:08:57 PM PDT
+Script done on Mon 20 Oct 2014 10:04:35 AM PDT
