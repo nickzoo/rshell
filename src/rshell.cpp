@@ -108,8 +108,10 @@ void execute(const vector< vector<string> >& cmd) {
 			}
 		}
 		else {
-			if (waitpid(pid, &status, 0) < 0)
+			if (waitpid(pid, &status, 0) < 0) {
 				perror("waitpid");
+				exit(1);
+			}
 		}
 	}
 	c_delete(cmd, c_cmd);
