@@ -35,7 +35,7 @@ string preprocess(const string& line) {
 	return processed;
 }
 
-//raw input is parsed into an array of commands
+//raw input is parsed into an vector of commands
 int parse(string& line, vector< vector<string> >& cmd) {
 	line = preprocess(line);
 	cmd.push_back(vector<string>());
@@ -99,6 +99,8 @@ void execute(const vector< vector<string> >& cmd) {
 				exit(1);
 			}
 			else {
+				if (c_cmd[i][1] == NULL)
+					exit(0);
 				if (strcmp(c_cmd[i][0], "||") == 0 && status == 0)
 					exit(0);
 				if (strcmp(c_cmd[i][0], "&&") == 0 && status != 0)
@@ -121,9 +123,16 @@ void execute(const vector< vector<string> >& cmd) {
 //prompt for input, get input, parse, execute, repeat
 int main() {
 	while (1) {
-		char *login = getlogin();
+		char login[MAX_LENGTH];
 		char hostname[MAX_LENGTH];
-		gethostname(hostname, MAX_LENGTH);
+		if (getlogin_r(login, MAX_LENGTH) != 0) {
+			perror("getlogin_r");
+			return -1;
+		}
+		if (gethostname(hostname, MAX_LENGTH) != 0) {
+			perror("gethostname");
+			return -1;
+		}
 		cout << login << "@" << hostname << "$ ";
 		string line;
 		getline(cin, line);
