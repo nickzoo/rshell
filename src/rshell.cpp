@@ -46,7 +46,7 @@ int parse(string& line, vector< vector<string> >& cmd) {
 		if (token == "#")
 			break;
 		if (token == ";" || token == "||" || token == "&&") {
-			if (cmd[i].empty())
+			if (cmd[i].empty() || (i > 0 && cmd[i].size() == 1))
 				return 1;
 			cmd.push_back(vector<string>());
 			++i;
