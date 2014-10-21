@@ -24,3 +24,5 @@ The exit command will work only if the input is exactly "exit". e.g., "ls; exit"
 Quotation marks are not treated as special characters.
 e.g., echo "hello    world" will print: "hello world"
 In bash, it would print: hello    world
+
+Ending with the connector "||" or "&&" will not prompt for further input, as it does in bash.
