@@ -26,3 +26,7 @@ e.g., echo "hello    world" will print: "hello world"
 In bash, it would print: hello    world
 
 If you end a line with "||" or "&&", rshell will not prompt for further input like bash. Instead, the trailing connector will be ignored.
+
+cd command does nothing, and does not print an error.
+
+login and hostname must not exceed 255 characters.

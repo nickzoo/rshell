@@ -1,30 +1,89 @@
-cd cs100/rshell
-bin/rshell
+#no commands
 
 #one command no arguments
 ls
 
 #one command with arguments
-echo  test  pass
+echo executing exec.sh
+
+#multiple spaces
+echo  test pass
+
+#leading whitespace
+      ls
+
+#trailing whitespace
+ls      
+
+#invalid command
+this_file_will_not_be_found
+
+#invalid argument
+ls -INVALID_ARGUMENT
+
+#long line
+#00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+
+#many commands
+ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; 
+
+#many arguments
+echo 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
 
 #comment
+ls -l # -a
+
+#no space after #
 ls -l #-a
 
-#comment syntax
+#there must be a space before # for it to be registered as a comment
 ls -l#-a
 
-#connectors
+#;
 ls; pwd
-true &&ls
+
+#true &&
+true && ls
+
+#false &&
 false && ls
+
+#command && ls
+ls && ls
+INVALID_COMMAND && ls
+
+#true ||
 true || ls
-false ||ls
+
+#false ||
+false || ls
+
+#command || ls
+ls || ls
+INVALID_COMMAND || ls
+
+#connectors not separated by whitespace
+ls;pwd
+true&&ls
+false||ls
+
+#connectors with multiple spaces
+ls  ;  pwd
+true  &&  ls
+false  ||  ls
+
+#multiple connectors
 true && mkdir x; false && echo fail
 true || echo fail; false || mkdir y
 ls; rmdir x && rmdir y; ls
 
-#connector syntax
+#leading connectors
 ;ls
+&&ls
+||ls
+
+#empty command before connector error
+ls ;; ls
 
 #script inside a script
 script scriptception
@@ -44,6 +103,11 @@ exit;
 
 #quotation marks
 echo "  hello      world  "
+
+#trailing connectors
+ls;
+ls||
+ls&&
 
 #exit
 exit
