@@ -62,6 +62,10 @@ false || ls
 ls || ls
 INVALID_COMMAND || ls
 
+#"& &" and "| |" are not recognized as connectors
+true & & ls
+false | | ls
+
 #connectors not separated by whitespace
 ls;pwd
 true&&ls
