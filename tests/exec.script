@@ -1,13 +1,13 @@
-Script started on Tue 21 Oct 2014 08:15:57 PM PDT
+Script started on Tue 21 Oct 2014 08:56:39 PM PDT
 ~
-lxu003@well $ cd cs100/rshell/
+lxu003@well $ cs [K[Kd cs01[K[K100/rshell/
 ~/cs100/rshell
 lxu003@well $ bin/rshell 
 lxu003@well.cs.ucr.edu$ #no commands
 lxu003@well.cs.ucr.edu$ 
 lxu003@well.cs.ucr.edu$ #one command no arguments
 lxu003@well.cs.ucr.edu$ ls
-bin  LICENSE  Makefile	README	src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
 lxu003@well.cs.ucr.edu$ 
 lxu003@well.cs.ucr.edu$ #one command with arguments
 lxu003@well.cs.ucr.edu$ echo test pass
@@ -19,11 +19,11 @@ test pass
 lxu003@well.cs.ucr.edu$ 
 lxu003@well.cs.ucr.edu$ #leading whitespace
 lxu003@well.cs.ucr.edu$       ls
-bin  LICENSE  Makefile	README	src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
 lxu003@well.cs.ucr.edu$ 
 lxu003@well.cs.ucr.edu$ #trailing whitespace
 lxu003@well.cs.ucr.edu$ ls      
-bin  LICENSE  Makefile	README	src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
 lxu003@well.cs.ucr.edu$ 
 lxu003@well.cs.ucr.edu$ #invalid command
 lxu003@well.cs.ucr.edu$ this_file_will_not_be_found
@@ -36,23 +36,25 @@ Try `ls --help' for more information.
 lxu003@well.cs.ucr.edu$ 
 lxu003@well.cs.ucr.edu$ #comment
 lxu003@well.cs.ucr.edu$ ls -l # -a
-total 24
-drwx------ 2 lxu003 csmajs 4096 Oct 21 20:15 bin
--rw------- 1 lxu003 csmajs 1075 Oct 21 19:58 LICENSE
--rw------- 1 lxu003 csmajs  233 Oct 21 19:58 Makefile
--rw------- 1 lxu003 csmajs 1107 Oct 21 20:08 README
-drwx------ 2 lxu003 csmajs 4096 Oct 21 19:58 src
-drwx------ 2 lxu003 csmajs 4096 Oct 21 20:15 tests
+total 28
+drwx------ 2 lxu003 csmajs 4096 Oct 21 20:53 bin
+-rw------- 1 lxu003 csmajs 1075 Oct 21 20:27 LICENSE
+-rw------- 1 lxu003 csmajs  233 Oct 21 20:27 Makefile
+-rw------- 1 lxu003 csmajs 1131 Oct 21 20:27 README
+-rw------- 1 lxu003 csmajs  201 Oct 21 20:55 scriptception
+drwx------ 2 lxu003 csmajs 4096 Oct 21 20:27 src
+drwx------ 2 lxu003 csmajs 4096 Oct 21 20:52 tests
 lxu003@well.cs.ucr.edu$ 
 lxu003@well.cs.ucr.edu$ #no space after #
 lxu003@well.cs.ucr.edu$ ls -l #-a
-total 24
-drwx------ 2 lxu003 csmajs 4096 Oct 21 20:15 bin
--rw------- 1 lxu003 csmajs 1075 Oct 21 19:58 LICENSE
--rw------- 1 lxu003 csmajs  233 Oct 21 19:58 Makefile
--rw------- 1 lxu003 csmajs 1107 Oct 21 20:08 README
-drwx------ 2 lxu003 csmajs 4096 Oct 21 19:58 src
-drwx------ 2 lxu003 csmajs 4096 Oct 21 20:15 tests
+total 28
+drwx------ 2 lxu003 csmajs 4096 Oct 21 20:53 bin
+-rw------- 1 lxu003 csmajs 1075 Oct 21 20:27 LICENSE
+-rw------- 1 lxu003 csmajs  233 Oct 21 20:27 Makefile
+-rw------- 1 lxu003 csmajs 1131 Oct 21 20:27 README
+-rw------- 1 lxu003 csmajs  201 Oct 21 20:55 scriptception
+drwx------ 2 lxu003 csmajs 4096 Oct 21 20:27 src
+drwx------ 2 lxu003 csmajs 4096 Oct 21 20:52 tests
 lxu003@well.cs.ucr.edu$ 
 lxu003@well.cs.ucr.edu$ #there must be a space before # for it to be registered as a comment
 lxu003@well.cs.ucr.edu$ ls -l#-a
@@ -64,347 +66,348 @@ lxu003@well.cs.ucr.edu$ echo 000000000000000000000000000000000000000000000000000
 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
 lxu003@well.cs.ucr.edu$ 
 lxu003@well.cs.ucr.edu$ #many commands
+lxu003@well.cs.ucr.edu$ #many commands
 lxu003@well.cs.ucr.edu$ ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; 
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
 lxu003@well.cs.ucr.edu$ 
 lxu003@well.cs.ucr.edu$ #many arguments
 lxu003@well.cs.ucr.edu$ echo 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
@@ -412,20 +415,20 @@ lxu003@well.cs.ucr.edu$ echo 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
 lxu003@well.cs.ucr.edu$ 
 lxu003@well.cs.ucr.edu$ #;
 lxu003@well.cs.ucr.edu$ ls; pwd
-bin  LICENSE  Makefile	README	src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
 /home/csmajs/lxu003/cs100/rshell
 lxu003@well.cs.ucr.edu$ 
 lxu003@well.cs.ucr.edu$ #true &&
 lxu003@well.cs.ucr.edu$ true && ls
-bin  LICENSE  Makefile	README	src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
 lxu003@well.cs.ucr.edu$ 
 lxu003@well.cs.ucr.edu$ #false &&
 lxu003@well.cs.ucr.edu$ false && ls
 lxu003@well.cs.ucr.edu$ 
 lxu003@well.cs.ucr.edu$ #command && ls
 lxu003@well.cs.ucr.edu$ ls && ls
-bin  LICENSE  Makefile	README	src  tests
-bin  LICENSE  Makefile	README	src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
 lxu003@well.cs.ucr.edu$ INVALID_COMMAND && ls
 execvp: No such file or directory
 lxu003@well.cs.ucr.edu$ 
@@ -434,40 +437,43 @@ lxu003@well.cs.ucr.edu$ true || ls
 lxu003@well.cs.ucr.edu$ 
 lxu003@well.cs.ucr.edu$ #false ||
 lxu003@well.cs.ucr.edu$ false || ls
-bin  LICENSE  Makefile	README	src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
 lxu003@well.cs.ucr.edu$ 
 lxu003@well.cs.ucr.edu$ #command || ls
 lxu003@well.cs.ucr.edu$ ls || ls
-bin  LICENSE  Makefile	README	src  tests
-lxu003@well.cs.ucr.edu$ 
+bin  LICENSE  Makefile	README	scriptception  src  tests
 lxu003@well.cs.ucr.edu$ INVALID_COMMAND || ls
 execvp: No such file or directory
-bin  LICENSE  Makefile	README	src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
+lxu003@well.cs.ucr.edu$ 
+lxu003@well.cs.ucr.edu$ #"& &" and "| |" are not recognized as connectors
+lxu003@well.cs.ucr.edu$ true & & ls
+lxu003@well.cs.ucr.edu$ false | | ls
 lxu003@well.cs.ucr.edu$ 
 lxu003@well.cs.ucr.edu$ #connectors not separated by whitespace
 lxu003@well.cs.ucr.edu$ ls;pwd
-bin  LICENSE  Makefile	README	src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
 /home/csmajs/lxu003/cs100/rshell
 lxu003@well.cs.ucr.edu$ true&&ls
-bin  LICENSE  Makefile	README	src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
 lxu003@well.cs.ucr.edu$ false||ls
-bin  LICENSE  Makefile	README	src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
 lxu003@well.cs.ucr.edu$ 
 lxu003@well.cs.ucr.edu$ #connectors with multiple spaces
 lxu003@well.cs.ucr.edu$ ls  ;  pwd
-bin  LICENSE  Makefile	README	src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
 /home/csmajs/lxu003/cs100/rshell
 lxu003@well.cs.ucr.edu$ true  &&  ls
-bin  LICENSE  Makefile	README	src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
 lxu003@well.cs.ucr.edu$ false  ||  ls
-bin  LICENSE  Makefile	README	src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests
 lxu003@well.cs.ucr.edu$ 
 lxu003@well.cs.ucr.edu$ #multiple connectors
 lxu003@well.cs.ucr.edu$ true && mkdir x; false && echo fail
 lxu003@well.cs.ucr.edu$ true || echo fail; false || mkdir y
 lxu003@well.cs.ucr.edu$ ls; rmdir x && rmdir y; ls
-bin  LICENSE  Makefile	README	src  tests  x  y
-bin  LICENSE  Makefile	README	src  tests
+bin  LICENSE  Makefile	README	scriptception  src  tests  x  y
+bin  LICENSE  Makefile	README	scriptception  src  tests
 lxu003@well.cs.ucr.edu$ 
 lxu003@well.cs.ucr.edu$ #leading connectors
 lxu003@well.cs.ucr.edu$ ;ls
@@ -509,6 +515,8 @@ lxu003@well.cs.ucr.edu$
 lxu003@well.cs.ucr.edu$ #quotation marks
 lxu003@well.cs.ucr.edu$ echo "  hello      world  "
 " hello world "
+lxu003@well.cs.ucr.edu$ echo 'hello       world'
+'hello world'
 lxu003@well.cs.ucr.edu$ 
 lxu003@well.cs.ucr.edu$ #trailing connectors
 lxu003@well.cs.ucr.edu$ ls;
@@ -528,4 +536,4 @@ lxu003@well.cs.ucr.edu$ exit
 lxu003@well $ exit
 exit
 
-Script done on Tue 21 Oct 2014 08:20:02 PM PDT
+Script done on Tue 21 Oct 2014 08:59:58 PM PDT
