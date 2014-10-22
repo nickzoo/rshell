@@ -4,7 +4,7 @@
 ls
 
 #one command with arguments
-echo executing exec.sh
+echo test pass
 
 #multiple spaces
 echo  test pass
