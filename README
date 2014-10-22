@@ -21,17 +21,18 @@ tests/
 ( Bugs )
 The exit command will work only if the input is exactly "exit". e.g., "ls; exit", "exit;", "exit ", etc. will not be recognized.
 
-Neither single quotes nor double quotes are not treated as special characters.
-e.g., echo "hello    world" will print: "hello world"
-In bash, it would print: hello    world
-
 If you end a line with "||" or "&&", rshell will not prompt for further input like bash. Instead, the trailing connector will be ignored.
 
-Some invalid arguments will mysteriously not cause an error and be ignored.
+If you end a line with unmatched quotes, rshell will not prompt for further input like bash. Instead, a syntax error message will be printed.
+
+Unlike bash, strings inside quotes will always be treated as a new token.
+e.g., echo a"hello" will print ahello in bash but a hello in rshell.
+echo"hello" will cause in error in bash but print hello in rshell.
+
+Some illegal arguments may mysteriously not cause an error and be ignored.
 e.g. ls -INVALID_ARGUMENT
-Other invalid arguments will cause an error.
-e.g. ls -0
+This is machine dependent – on my machine, the provided example does cause an error, but on other machines I have tested on, it does not.
 
-cd command does nothing, and does not print an error.
+The cd command does nothing, and does not print an error.
 
-login and hostname must not exceed 255 characters.
+The login and hostname must not exceed 255 characters.
