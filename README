@@ -27,6 +27,11 @@ In bash, it would print: hello    world
 
 If you end a line with "||" or "&&", rshell will not prompt for further input like bash. Instead, the trailing connector will be ignored.
 
+Some invalid arguments will mysteriously not cause an error and be ignored.
+e.g. ls -INVALID_ARGUMENT
+Other invalid arguments will cause an error.
+e.g. ls -0
+
 cd command does nothing, and does not print an error.
 
 login and hostname must not exceed 255 characters.
