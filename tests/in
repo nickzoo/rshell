@@ -107,6 +107,7 @@ exit;
 
 #quotation marks
 echo "  hello      world  "
+echo 'hello       world'
 
 #trailing connectors
 ls;
