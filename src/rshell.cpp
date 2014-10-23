@@ -21,7 +21,7 @@ void more_input(string& line) {
 }
 
 void parse_backslash(string& line,
-					int& i,
+					size_t& i,
 					string& token) {
 	if (i+1 < line.size()) {
 		token += line[i+1];
@@ -36,7 +36,7 @@ void parse_backslash(string& line,
 
 void parse_quotes(string& line,
 				 vector< vector<string> >& parsed,
-				 int& i,
+				 size_t& i,
 				 string& token) {
 	char delimiter = line[i];
 	++i;
@@ -52,8 +52,8 @@ LOOP:
 
 int parse_connector1(const string& line,
 					 vector< vector<string> >& parsed,
-					 int& i,
-					 int& j,
+					 size_t& i,
+					 size_t& j,
 					 string& token) {
 	if (token.size() == 0) {
 		if (parsed[j].size() == 0 ||
@@ -77,8 +77,8 @@ int parse_connector1(const string& line,
 
 int parse_connector2(string& line,
 					 vector< vector<string> >& parsed,
-					 int& i,
-					 int& j,
+					 size_t& i,
+					 size_t& j,
 					 string& token) {
 	if (token.size() == 0) {
 		if (parsed[j].size() == 0 ||
@@ -109,8 +109,8 @@ int parse_connector2(string& line,
 
 int parse(string& line, vector< vector<string> >& parsed) {
 	parsed.push_back(vector<string>());
-	int i = 0;
-	int j = 0;
+	size_t i = 0;
+	size_t j = 0;
 	while (i < line.size()) {
 		while (i < line.size() && line[i] <= 32) ++i;
 		if (line[i] == '#')
