@@ -1,8 +1,8 @@
-Script started on Thu 23 Oct 2014 11:59:01 AM PDT
+Script started on Thu 23 Oct 2014 12:03:13 PM PDT
 ~
 lxu003@hammer $ cd tmp/rshell/
 ~/tmp/rshell
-lxu003@hammer $ bin/rshell < in/[K[K[K[Kt[K tests/in
+lxu003@hammer $ bin/rshell < tests/in
 lxu003@hammer.cs.ucr.edu$ ----------------
 lxu003@hammer.cs.ucr.edu$ #no commands
 lxu003@hammer.cs.ucr.edu$ 
@@ -40,22 +40,22 @@ lxu003@hammer.cs.ucr.edu$ ----------------
 lxu003@hammer.cs.ucr.edu$ #comment
 lxu003@hammer.cs.ucr.edu$ ls -l # -a
 lxu003@hammer.cs.ucr.edu$ total 24
-drwx------ 2 lxu003 csmajs 4096 Oct 23 11:52 bin
+drwx------ 2 lxu003 csmajs 4096 Oct 23 12:02 bin
 -rw------- 1 lxu003 csmajs 1075 Oct 23 11:51 LICENSE
 -rw------- 1 lxu003 csmajs  233 Oct 23 11:51 Makefile
 -rw------- 1 lxu003 csmajs  779 Oct 23 11:51 README
-drwx------ 2 lxu003 csmajs 4096 Oct 23 11:52 src
-drwx------ 2 lxu003 csmajs 4096 Oct 23 11:58 tests
+drwx------ 2 lxu003 csmajs 4096 Oct 23 11:59 src
+drwx------ 2 lxu003 csmajs 4096 Oct 23 12:02 tests
 lxu003@hammer.cs.ucr.edu$ ----------------
 lxu003@hammer.cs.ucr.edu$ #no space after #
 lxu003@hammer.cs.ucr.edu$ ls -l #-a
 lxu003@hammer.cs.ucr.edu$ total 24
-drwx------ 2 lxu003 csmajs 4096 Oct 23 11:52 bin
+drwx------ 2 lxu003 csmajs 4096 Oct 23 12:02 bin
 -rw------- 1 lxu003 csmajs 1075 Oct 23 11:51 LICENSE
 -rw------- 1 lxu003 csmajs  233 Oct 23 11:51 Makefile
 -rw------- 1 lxu003 csmajs  779 Oct 23 11:51 README
-drwx------ 2 lxu003 csmajs 4096 Oct 23 11:52 src
-drwx------ 2 lxu003 csmajs 4096 Oct 23 11:58 tests
+drwx------ 2 lxu003 csmajs 4096 Oct 23 11:59 src
+drwx------ 2 lxu003 csmajs 4096 Oct 23 12:02 tests
 lxu003@hammer.cs.ucr.edu$ ----------------
 lxu003@hammer.cs.ucr.edu$ #there must be a space before # for it to be registered as a comment
 lxu003@hammer.cs.ucr.edu$ ls -l#-a
@@ -123,8 +123,9 @@ lxu003@hammer.cs.ucr.edu$ ls ;; ls
 lxu003@hammer.cs.ucr.edu$ syntax error: token ';'
 lxu003@hammer.cs.ucr.edu$ ----------------
 lxu003@hammer.cs.ucr.edu$ #exit
+lxu003@hammer.cs.ucr.edu$ exit
 lxu003@hammer.cs.ucr.edu$ ~/tmp/rshell
 lxu003@hammer $ exit
 exit
 
-Script done on Thu 23 Oct 2014 11:59:21 AM PDT
+Script done on Thu 23 Oct 2014 12:03:30 PM PDT

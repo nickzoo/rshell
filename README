@@ -19,10 +19,6 @@ tests/
 	in
 
 ( Bugs )
-Some illegal arguments may mysteriously not cause an error and be ignored.
-e.g. ls -INVALID_ARGUMENT
-This is machine dependent – on my machine, the provided example does cause an error, but on other machines I have tested on, it does not.
-
 The cd command does nothing, and does not print an error.
 
 The login and hostname must not exceed 255 characters.
