@@ -1,121 +1,106 @@
-#no commands
+echo ----------------
+echo "#no commands"
+echo ""
 
-#one command no arguments
+echo
+echo ----------------
+echo "#one command no arguments"
+echo "ls"
 ls
-
-#one command with arguments
+echo ----------------
+echo "#one command with arguments"
+echo "echo test pass"
 echo test pass
-
-#multiple spaces
+echo ----------------
+echo "#multiple spaces"
+echo "echo  test pass"
 echo  test pass
-
-#leading whitespace
-      ls
-
-#trailing whitespace
-ls      
-
-#invalid command
+echo ----------------
+echo "#leading whitespace"
+echo "       ls"
+       ls
+echo ----------------
+echo "#trailing whitespace"
+echo "ls    "
+ls    
+echo ----------------
+echo "#illegal command"
+echo "this_file_will_not_be_found"
 this_file_will_not_be_found
-
-#invalid argument
+echo ----------------
+echo "#illegal argument"
+echo "ls -0"
 ls -0
-
-#comment
+echo ----------------
+echo "#comment"
+echo "ls -l # -a"
 ls -l # -a
-
-#no space after #
+echo ----------------
+echo "#no space after #"
+echo "ls -l #-a"
 ls -l #-a
-
-#there must be a space before # for it to be registered as a comment
+echo ----------------
+echo "#there must be a space before # for it to be registered as a comment"
+echo "ls -l#-a"
 ls -l#-a
-
-#long line
-echo 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-
-#many commands
-ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; ls; 
-
-#many arguments
-echo 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
-
-#;
+echo ----------------
+echo "#;"
+echo "ls; pwd"
 ls; pwd
-
-#true &&
+echo ----------------
+echo "#true &&"
+echo "true && ls"
 true && ls
-
-#false &&
+echo ----------------
+echo "#false &&"
+echo "false && ls"
 false && ls
-
-#command && ls
-ls && ls
-INVALID_COMMAND && ls
-
-#true ||
+echo
+echo ----------------
+echo "#true ||"
+echo "true || ls"
 true || ls
-
-#false ||
+echo
+echo ----------------
+echo "#false ||"
+echo "false || ls"
 false || ls
-
-#command || ls
-ls || ls
-INVALID_COMMAND || ls
-
-#"& &" and "| |" are not recognized as connectors
-true & & ls
-false | | ls
-
-#connectors not separated by whitespace
+echo ----------------
+echo "#connectors not separated by whitespace"
+echo "ls;pwd"
 ls;pwd
+echo "true&&ls"
 true&&ls
+echo "false||ls"
 false||ls
-
-#connectors with multiple spaces
+echo ----------------
+echo "#connectors with multiple spaces"
+echo "ls  ;  pwd"
 ls  ;  pwd
-true  &&  ls
+echo "true   &&   ls"
+true   &&   ls
+echo "false  ||  ls"
 false  ||  ls
-
-#multiple connectors
-true && mkdir x; false && echo fail
-true || echo fail; false || mkdir y
+echo ----------------
+echo "#multiple connectors"
+echo "echo; true && mkdir x; false && echo fail"
+echo; true && mkdir x; false && echo fail
+echo "echo; true || echo fail; false || mkdir y"
+echo; true || echo fail; false || mkdir y
+echo "ls; rmdir x && rmdir y; ls"
 ls; rmdir x && rmdir y; ls
-
-#leading connectors
+echo ----------------
+echo "#leading connectors"
+echo ";ls"
 ;ls
+echo "&&ls"
 &&ls
+echo "||ls"
 ||ls
-
-#empty command before connector error
+echo ----------------
+echo "#empty command before connector error"
+echo "ls ;; ls"
 ls ;; ls
-
-#script inside a script
-script scriptception
-echo echo echo echo ... echo
-exit
-rm scriptception
-
-#rshell inside rshell
-bin/rshell
-echo I'm in rshell in rshell
-exit
-
-#bugs
-#exit must be exactly "exit"
-exit;
- exit
-
-#quotation marks
-echo "  hello      world  "
-echo 'hello       world'
-
-#trailing connectors
-ls;
-ls||
-ls&&
-
-#some illegal arguments may not trigger an error
-ls -ILLEGAL_OPTION
-
-#exit
+echo ----------------
+echo "#exit"
 exit
