@@ -12,6 +12,8 @@ int main() {
 	char login[MAX_LENGTH];
 	char hostname[MAX_LENGTH];
 	while (true) {
+		if (std::cin.eof())
+			break;
 		if (getlogin_r(login, MAX_LENGTH) != 0) {
 			perror("getlogin_r");
 			return 1;
@@ -22,16 +24,12 @@ int main() {
 		}
 		std::cout << login << "@" << hostname << "$ ";
 		std::string line;
-		if (std::cin.eof())
-			break;
 		getline(std::cin, line);
 		std::vector< std::vector<std::string> > parsed;
-		int error = parse(line, parsed);
-		if (error) {
+		if (parse(line, parsed)) {
 			continue;
 		}
-		int exit_now = execute(parsed);
-		if (exit_now) {
+		if (execute(parsed)) {
 			break;
 		}
 	}
