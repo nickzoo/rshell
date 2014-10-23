@@ -14,8 +14,10 @@ int execute(const std::vector< std::vector<std::string> >& parsed) {
 		if (!c_parsed[i][0]) return 0;
 		if (strcmp(c_parsed[i][0], "exit") == 0 ||
 				(i > 0 && c_parsed[i][1] &&
-				 strcmp(c_parsed[i][1], "exit") == 0))
+				 strcmp(c_parsed[i][1], "exit") == 0)) {
+			c_delete(parsed, c_parsed);
 			return 1;
+		}
 		int pid = fork();
 		if (pid < 0) {
 			perror("fork");
@@ -57,7 +59,7 @@ std::vector<char**> c_compatible(const std::vector< std::vector<std::string> >& 
 		size_t j;
 		for (j = 0; j < parsed[i].size(); ++j) {
 			argv[j] = new char[parsed[i][j].size()+1];
-			memcpy(argv[j], parsed[i][j].c_str(), parsed[i][j].size()+1);
+			strcpy(argv[j], parsed[i][j].c_str());
 		}
 		argv[j] = NULL;
 		c_parsed.push_back(argv);
