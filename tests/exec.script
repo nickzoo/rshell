@@ -1,0 +1,130 @@
+Script started on Thu 23 Oct 2014 11:59:01 AM PDT
+~
+lxu003@hammer $ cd tmp/rshell/
+~/tmp/rshell
+lxu003@hammer $ bin/rshell < in/[K[K[K[Kt[K tests/in
+lxu003@hammer.cs.ucr.edu$ ----------------
+lxu003@hammer.cs.ucr.edu$ #no commands
+lxu003@hammer.cs.ucr.edu$ 
+lxu003@hammer.cs.ucr.edu$ lxu003@hammer.cs.ucr.edu$ 
+lxu003@hammer.cs.ucr.edu$ ----------------
+lxu003@hammer.cs.ucr.edu$ #one command no arguments
+lxu003@hammer.cs.ucr.edu$ ls
+lxu003@hammer.cs.ucr.edu$ bin  LICENSE  Makefile	README	src  tests
+lxu003@hammer.cs.ucr.edu$ ----------------
+lxu003@hammer.cs.ucr.edu$ #one command with arguments
+lxu003@hammer.cs.ucr.edu$ echo test pass
+lxu003@hammer.cs.ucr.edu$ test pass
+lxu003@hammer.cs.ucr.edu$ ----------------
+lxu003@hammer.cs.ucr.edu$ #multiple spaces
+lxu003@hammer.cs.ucr.edu$ echo  test pass
+lxu003@hammer.cs.ucr.edu$ test pass
+lxu003@hammer.cs.ucr.edu$ ----------------
+lxu003@hammer.cs.ucr.edu$ #leading whitespace
+lxu003@hammer.cs.ucr.edu$        ls
+lxu003@hammer.cs.ucr.edu$ bin  LICENSE  Makefile	README	src  tests
+lxu003@hammer.cs.ucr.edu$ ----------------
+lxu003@hammer.cs.ucr.edu$ #trailing whitespace
+lxu003@hammer.cs.ucr.edu$ ls    
+lxu003@hammer.cs.ucr.edu$ ls: cannot access : No such file or directory
+lxu003@hammer.cs.ucr.edu$ ----------------
+lxu003@hammer.cs.ucr.edu$ #illegal command
+lxu003@hammer.cs.ucr.edu$ this_file_will_not_be_found
+lxu003@hammer.cs.ucr.edu$ execvp: No such file or directory
+lxu003@hammer.cs.ucr.edu$ ----------------
+lxu003@hammer.cs.ucr.edu$ #illegal argument
+lxu003@hammer.cs.ucr.edu$ ls -0
+lxu003@hammer.cs.ucr.edu$ ls: invalid option -- '0'
+Try `ls --help' for more information.
+lxu003@hammer.cs.ucr.edu$ ----------------
+lxu003@hammer.cs.ucr.edu$ #comment
+lxu003@hammer.cs.ucr.edu$ ls -l # -a
+lxu003@hammer.cs.ucr.edu$ total 24
+drwx------ 2 lxu003 csmajs 4096 Oct 23 11:52 bin
+-rw------- 1 lxu003 csmajs 1075 Oct 23 11:51 LICENSE
+-rw------- 1 lxu003 csmajs  233 Oct 23 11:51 Makefile
+-rw------- 1 lxu003 csmajs  779 Oct 23 11:51 README
+drwx------ 2 lxu003 csmajs 4096 Oct 23 11:52 src
+drwx------ 2 lxu003 csmajs 4096 Oct 23 11:58 tests
+lxu003@hammer.cs.ucr.edu$ ----------------
+lxu003@hammer.cs.ucr.edu$ #no space after #
+lxu003@hammer.cs.ucr.edu$ ls -l #-a
+lxu003@hammer.cs.ucr.edu$ total 24
+drwx------ 2 lxu003 csmajs 4096 Oct 23 11:52 bin
+-rw------- 1 lxu003 csmajs 1075 Oct 23 11:51 LICENSE
+-rw------- 1 lxu003 csmajs  233 Oct 23 11:51 Makefile
+-rw------- 1 lxu003 csmajs  779 Oct 23 11:51 README
+drwx------ 2 lxu003 csmajs 4096 Oct 23 11:52 src
+drwx------ 2 lxu003 csmajs 4096 Oct 23 11:58 tests
+lxu003@hammer.cs.ucr.edu$ ----------------
+lxu003@hammer.cs.ucr.edu$ #there must be a space before # for it to be registered as a comment
+lxu003@hammer.cs.ucr.edu$ ls -l#-a
+lxu003@hammer.cs.ucr.edu$ ls: invalid option -- '#'
+Try `ls --help' for more information.
+lxu003@hammer.cs.ucr.edu$ ----------------
+lxu003@hammer.cs.ucr.edu$ #;
+lxu003@hammer.cs.ucr.edu$ ls; pwd
+lxu003@hammer.cs.ucr.edu$ bin  LICENSE  Makefile	README	src  tests
+/home/csmajs/lxu003/tmp/rshell
+lxu003@hammer.cs.ucr.edu$ ----------------
+lxu003@hammer.cs.ucr.edu$ #true &&
+lxu003@hammer.cs.ucr.edu$ true && ls
+lxu003@hammer.cs.ucr.edu$ bin  LICENSE  Makefile	README	src  tests
+lxu003@hammer.cs.ucr.edu$ ----------------
+lxu003@hammer.cs.ucr.edu$ #false &&
+lxu003@hammer.cs.ucr.edu$ false && ls
+lxu003@hammer.cs.ucr.edu$ lxu003@hammer.cs.ucr.edu$ 
+lxu003@hammer.cs.ucr.edu$ ----------------
+lxu003@hammer.cs.ucr.edu$ #true ||
+lxu003@hammer.cs.ucr.edu$ true || ls
+lxu003@hammer.cs.ucr.edu$ lxu003@hammer.cs.ucr.edu$ 
+lxu003@hammer.cs.ucr.edu$ ----------------
+lxu003@hammer.cs.ucr.edu$ #false ||
+lxu003@hammer.cs.ucr.edu$ false || ls
+lxu003@hammer.cs.ucr.edu$ bin  LICENSE  Makefile	README	src  tests
+lxu003@hammer.cs.ucr.edu$ ----------------
+lxu003@hammer.cs.ucr.edu$ #connectors not separated by whitespace
+lxu003@hammer.cs.ucr.edu$ ls;pwd
+lxu003@hammer.cs.ucr.edu$ bin  LICENSE  Makefile	README	src  tests
+/home/csmajs/lxu003/tmp/rshell
+lxu003@hammer.cs.ucr.edu$ true&&ls
+lxu003@hammer.cs.ucr.edu$ bin  LICENSE  Makefile	README	src  tests
+lxu003@hammer.cs.ucr.edu$ false||ls
+lxu003@hammer.cs.ucr.edu$ bin  LICENSE  Makefile	README	src  tests
+lxu003@hammer.cs.ucr.edu$ ----------------
+lxu003@hammer.cs.ucr.edu$ #connectors with multiple spaces
+lxu003@hammer.cs.ucr.edu$ ls  ;  pwd
+lxu003@hammer.cs.ucr.edu$ bin  LICENSE  Makefile	README	src  tests
+/home/csmajs/lxu003/tmp/rshell
+lxu003@hammer.cs.ucr.edu$ true   &&   ls
+lxu003@hammer.cs.ucr.edu$ bin  LICENSE  Makefile	README	src  tests
+lxu003@hammer.cs.ucr.edu$ false  ||  ls
+lxu003@hammer.cs.ucr.edu$ bin  LICENSE  Makefile	README	src  tests
+lxu003@hammer.cs.ucr.edu$ ----------------
+lxu003@hammer.cs.ucr.edu$ #multiple connectors
+lxu003@hammer.cs.ucr.edu$ echo; true && mkdir x; false && echo fail
+lxu003@hammer.cs.ucr.edu$ 
+lxu003@hammer.cs.ucr.edu$ echo; true || echo fail; false || mkdir y
+lxu003@hammer.cs.ucr.edu$ 
+lxu003@hammer.cs.ucr.edu$ ls; rmdir x && rmdir y; ls
+lxu003@hammer.cs.ucr.edu$ bin  LICENSE  Makefile	README	src  tests  x  y
+bin  LICENSE  Makefile	README	src  tests
+lxu003@hammer.cs.ucr.edu$ ----------------
+lxu003@hammer.cs.ucr.edu$ #leading connectors
+lxu003@hammer.cs.ucr.edu$ ;ls
+lxu003@hammer.cs.ucr.edu$ syntax error: token ';'
+lxu003@hammer.cs.ucr.edu$ &&ls
+lxu003@hammer.cs.ucr.edu$ syntax error: token '&&'
+lxu003@hammer.cs.ucr.edu$ ||ls
+lxu003@hammer.cs.ucr.edu$ syntax error: token '||'
+lxu003@hammer.cs.ucr.edu$ ----------------
+lxu003@hammer.cs.ucr.edu$ #empty command before connector error
+lxu003@hammer.cs.ucr.edu$ ls ;; ls
+lxu003@hammer.cs.ucr.edu$ syntax error: token ';'
+lxu003@hammer.cs.ucr.edu$ ----------------
+lxu003@hammer.cs.ucr.edu$ #exit
+lxu003@hammer.cs.ucr.edu$ ~/tmp/rshell
+lxu003@hammer $ exit
+exit
+
+Script done on Thu 23 Oct 2014 11:59:21 AM PDT
