@@ -1,7 +1,6 @@
 CC = g++
 CFLAGS = -Wall -Werror -ansi -pedantic
-SOURCES = src/rshell.cpp
-OBJECTS = bin/rshell.o
+SOURCES = src/rshell.cpp src/rparser.cpp src/rexecute.cpp
 EXECUTABLE = bin/rshell
 
 all: rshell
