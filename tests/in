@@ -103,4 +103,5 @@ echo "ls ;; ls"
 ls ;; ls
 echo ----------------
 echo "#exit"
+echo "exit"
 exit
