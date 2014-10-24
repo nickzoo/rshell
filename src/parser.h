@@ -1,5 +1,5 @@
-#ifndef RPARSER_H
-#define RPARSER_H
+#ifndef PARSER_H
+#define PARSER_H
 
 int parse(std::string& line,
 		std::vector< std::vector<std::string> >& parsed);

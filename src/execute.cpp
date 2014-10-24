@@ -5,7 +5,7 @@
 #include <string.h> //strcmp, memcpy
 #include <sys/wait.h> //waitpid
 #include <unistd.h> //fork, execvp
-#include "rexecute.h"
+#include "execute.h"
 
 int execute(const std::vector< std::vector<std::string> >& parsed) {
 	std::vector<char**> c_parsed = c_compatible(parsed);

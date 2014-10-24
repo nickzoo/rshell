@@ -2,7 +2,7 @@
 #include <string>
 #include <vector>
 #include <stdlib.h> //exit
-#include "rparser.h"
+#include "parser.h"
 
 int parse(std::string& line,
 		std::vector< std::vector<std::string> >& parsed) {

@@ -13,6 +13,10 @@ LICENSE
 Makefile
 README
 src/
+	execute.cpp
+	execute.h
+	parser.cpp
+	parser.h
 	rshell.cpp
 tests/
 	exec.script
