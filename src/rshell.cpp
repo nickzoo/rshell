@@ -3,8 +3,8 @@
 #include <vector>
 #include <stdio.h> //perror
 #include <unistd.h> //getlogin_r, gethostname
-#include "parser.h" //parse
-#include "execute.h" //execute
+#include "parse.h"
+#include "execute.h"
 
 #define MAX_LENGTH 256
 
