@@ -15,8 +15,8 @@ README
 src/
 	execute.cpp
 	execute.h
-	parser.cpp
-	parser.h
+	parse.cpp
+	parse.h
 	rshell.cpp
 tests/
 	exec.script
