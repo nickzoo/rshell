@@ -1,6 +1,7 @@
 #include <iomanip> //std::setw
 #include <iostream> //std::cout, std::cerr
-#include <string> //std::string, std::to_string
+#include <sstream> //std::stringstream
+#include <string> //std::string
 #include <vector> //std::vector
 #include <dirent.h> //dirent, opendir, readdir
 #include <errno.h> //errno
@@ -107,6 +108,7 @@ void print_long(std::vector<std::string> paths,
 	for (size_t i = 0; i < paths.size(); ++i) {
 		struct stat s;
 		if (stat(paths[i].c_str(), &s) == 0) {
+			std::stringstream ss;
 			std::string permission;
 			permission += (s.st_mode & S_IFDIR ? 'd' : '-');
 			permission += (s.st_mode & S_IRUSR ? 'r' : '-');
@@ -119,7 +121,7 @@ void print_long(std::vector<std::string> paths,
 			permission += (s.st_mode & S_IWOTH ? 'w' : '-');
 			permission += (s.st_mode & S_IXOTH ? 'x' : '-');
 			permissions.push_back(permission);
-			std::string slink = std::to_string(s.st_nlink);
+			ss << s.st_nlink; std::string slink = ss.str(); ss.str("");
 			if (link_max < slink.size()) link_max = slink.size();
 			links.push_back(s.st_nlink);
 			const char* user = getpwuid(s.st_uid)->pw_name;
@@ -128,19 +130,20 @@ void print_long(std::vector<std::string> paths,
 			const char* group = getgrgid(s.st_gid)->gr_name;
 			if (group_max < strlen(group)) group_max = strlen(group);
 			groups.push_back(group);
-			std::string ssize = std::to_string(s.st_size);
+			ss << s.st_size; std::string ssize = ss.str(); ss.str("");
 			if (size_max < ssize.size()) size_max = ssize.size();
+			std::cout << "size max: " << size_max << std::endl;
 			sizes.push_back(s.st_size);
 			time_t mtime = s.st_mtime;
 			tm *ltm = localtime(&mtime);
 			std::string date;
 			date += months[ltm->tm_mon]; date += ' ';
 			if (ltm->tm_mday < 10) date += ' ';
-			date += std::to_string(ltm->tm_mday); date += ' ';
+			ss << ltm->tm_mday << ' '; date += ss.str(); ss.str("");
 			if (ltm->tm_hour < 10) date += '0';
-			date += std::to_string(ltm->tm_hour); date += ':';
+			ss << ltm->tm_hour << ':'; date += ss.str(); ss.str("");
 			if (ltm->tm_min < 10) date += '0';
-			date += std::to_string(ltm->tm_min);
+			ss << ltm->tm_min; date += ss.str(); ss.str("");
 			dates.push_back(date);
 		}
 		else {
