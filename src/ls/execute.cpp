@@ -25,12 +25,12 @@ void execute(const std::vector<const char*> files,
 		else {
 			std::cout << directories[0] << ": " << std::endl;
 			print_directory(directories[0], flags);
-			for (int i = 1; i < directories.size(); ++i)
+			for (size_t i = 1; i < directories.size(); ++i)
 				print_directory(directories[i], flags, true);
 		}
 	}
 	else {
-		for (int i = 0; i < directories.size(); ++i)
+		for (size_t i = 0; i < directories.size(); ++i)
 			print_directory(directories[i], flags, true);
 	}
 }
@@ -79,14 +79,14 @@ void print_directory(const char *directory, int flags, bool extra) {
 	else
 		print_files(files);
 	if (flags & FLAG_R) {
-		for (int i = 0; i < directory_paths.size(); ++i) {
+		for (size_t i = 0; i < directory_paths.size(); ++i) {
 			print_directory(directory_paths[i].c_str(), flags, true);
 		}
 	}
 }
 
 void print_files(std::vector<const char*> files) {
-	for (int i = 0; i < files.size(); ++i)
+	for (size_t i = 0; i < files.size(); ++i)
 		std::cout << files[i] << std::endl;
 }
 
@@ -99,12 +99,12 @@ void print_long(std::vector<std::string> paths,
 	std::vector<const char*> users;
 	std::vector<const char*> groups;
 	std::vector<off_t> sizes;
-	int link_max = 0;
-	int user_max = 0;
-	int group_max = 0;
-	int size_max = 0;
+	size_t link_max = 0;
+	size_t user_max = 0;
+	size_t group_max = 0;
+	size_t size_max = 0;
 	std::vector<std::string> dates;
-	for (int i = 0; i < paths.size(); ++i) {
+	for (size_t i = 0; i < paths.size(); ++i) {
 		struct stat s;
 		if (stat(paths[i].c_str(), &s) == 0) {
 			std::string permission;
@@ -148,7 +148,7 @@ void print_long(std::vector<std::string> paths,
 			return;
 		}
 	}
-	for (int i = 0; i < permissions.size(); ++i) {
+	for (size_t i = 0; i < permissions.size(); ++i) {
 		std::cout << permissions[i] << ' '
 				  << std::setw(link_max) << links[i] << ' '
 				  << std::setw(user_max) << users[i] << ' '
