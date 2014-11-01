@@ -13,16 +13,24 @@ LICENSE
 Makefile
 README
 src/
-	execute.cpp
-	execute.h
-	parse.cpp
-	parse.h
-	rshell.cpp
+	ls/
+		execute.cpp
+		execute.h
+		ls.cpp
+		parse.cpp
+		parse.h
+	rshell/
+		execute.cpp
+		execute.h
+		parse.cpp
+		parse.h
+		rshell.cpp
 tests/
 	exec.script
 	in
 
-( Bugs )
+( Bugs: rshell )
 The cd command does nothing, and does not print an error.
 
-The login and hostname must not exceed 255 characters.
+( Bugs: ls )
+The year of a file is not displayed when it is more than 6 months old.

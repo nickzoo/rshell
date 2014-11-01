@@ -1,9 +1,10 @@
-#include <iostream>
-#include <string>
-#include <vector>
-#include <stdlib.h> //exit
+#include <iostream> //std::cout, std::cin
+#include <string> //std::string, std::getline
+#include <vector> //std::vector
+#include <stdlib.h> //exit, size_t
 #include "parse.h"
 
+//each connector is the first argument of the command it precedes
 int parse(std::string& line,
 		std::vector< std::vector<std::string> >& parsed) {
 	parsed.push_back(std::vector<std::string>());
@@ -13,7 +14,7 @@ int parse(std::string& line,
 		while (i < line.size() && line[i] <= 32) ++i;
 		if (line[i] == '#')
 			break;
-		std::string token = "";
+		std::string token;
 		while (i < line.size() && line[i] > 32) {
 			if (line[i] == '\\') {
 				parse_backslash(line, i, token);
@@ -25,14 +26,14 @@ int parse(std::string& line,
 			}
 			else if (line[i] == ';') {
 				int error = parse_connector1(line, parsed, i, j, token);
-				if (error) return error;
+				if (error) return error; //e.g. ;; causes error
 				break;
 			}
 			else if (i < line.size() - 1 &&
 					((line[i] == '&' && line[i+1] == '&') ||
 					(line[i] == '|' && line[i+1] == '|'))) {
 				int error = parse_connector2(line, parsed, i, j, token);
-				if (error) return error;
+				if (error) return error; //e.g. ;&& causes error
 				break;
 			}
 			token += line[i++];
@@ -51,7 +52,7 @@ void parse_backslash(std::string& line,
 	}
 	else {
 		more_input(line);
-		i += 1;
+		++i; //skip newline character
 		while (i < line.size() && line[i] <= 32) ++i;
 	}
 }
@@ -65,11 +66,11 @@ void parse_quotes(std::string& line,
 LOOP:
 	while (i < line.size() && line[i] != delimiter)
 		token += line[i++];
-	if (i == line.size()) {
+	if (i == line.size()) { //mismatched quotes
 		more_input(line);
 		goto LOOP;
 	}
-	++i;
+	++i; //skip quote character
 }
 
 int parse_connector1(const std::string& line,
@@ -133,8 +134,6 @@ int parse_connector2(std::string& line,
 void more_input(std::string& line) {
 	std::cout << "> ";
 	std::string next_line;
-	if (std::cin.eof())
-		exit(1);
 	getline(std::cin, next_line);
 	line += "\n" + next_line;
 }

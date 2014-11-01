@@ -1,6 +1,6 @@
-#include <string>
-#include <vector>
-#include <stdio.h> //perror
+#include <string> //std::string
+#include <vector> //std::vector
+#include <stdio.h> //perror, size_t
 #include <stdlib.h> //exit, NULL
 #include <string.h> //strcmp, memcpy
 #include <sys/wait.h> //waitpid
@@ -11,7 +11,7 @@ int execute(const std::vector< std::vector<std::string> >& parsed) {
 	std::vector<char**> c_parsed = c_compatible(parsed);
 	int status;
 	for (size_t i = 0; i < c_parsed.size(); ++i) {
-		if (!c_parsed[i][0]) return 0;
+		if (!c_parsed[i][0]) return 0; //empty command
 		if (strcmp(c_parsed[i][0], "exit") == 0 ||
 				(i > 0 && c_parsed[i][1] &&
 				 strcmp(c_parsed[i][1], "exit") == 0)) {
@@ -19,11 +19,11 @@ int execute(const std::vector< std::vector<std::string> >& parsed) {
 			return 1;
 		}
 		int pid = fork();
-		if (pid < 0) {
+		if (pid < 0) { //error
 			perror("fork");
 			exit(1);
 		}
-		else if (pid == 0) {
+		else if (pid == 0) { //child
 			if (i == 0) {
 				execvp(c_parsed[i][0], c_parsed[i]);
 				perror("execvp");
@@ -36,12 +36,13 @@ int execute(const std::vector< std::vector<std::string> >& parsed) {
 					exit(0);
 				if (strcmp(c_parsed[i][0], "&&") == 0 && status != 0)
 					exit(0);
+				//skip the first argument, the connector
 				execvp(c_parsed[i][1], c_parsed[i]+1);
 				perror("execvp");
 				exit(1);
 			}
 		}
-		else {
+		else { //parent
 			if (waitpid(pid, &status, 0) < 0) {
 				perror("waitpid");
 				exit(1);
@@ -52,7 +53,8 @@ int execute(const std::vector< std::vector<std::string> >& parsed) {
 	return 0;
 }
 
-std::vector<char**> c_compatible(const std::vector< std::vector<std::string> >& parsed) {
+std::vector<char**> c_compatible(
+		const std::vector< std::vector<std::string> >& parsed) {
 	std::vector<char**> c_parsed;
 	for (size_t i = 0; i < parsed.size(); ++i) {
 		char **argv = new char*[parsed[i].size()+1];
@@ -67,9 +69,8 @@ std::vector<char**> c_compatible(const std::vector< std::vector<std::string> >& 
 	return c_parsed;
 }
  
-//an array of cstd::strings is necessary for execvp
 void c_delete(const std::vector< std::vector<std::string> >& parsed,
-		std::vector<char**>& c_parsed) {
+			  std::vector<char**>& c_parsed) {
 	for (size_t i = 0; i < parsed.size(); ++i) {
 		for (size_t j = 0; j < parsed[i].size(); ++j) {
 			delete[] c_parsed[i][j];
