@@ -38,7 +38,7 @@ int parse(std::string& line,
 			}
 			token += line[i++];
 		}
-		parsed[j].push_back(token);
+		if (!token.empty()) parsed[j].push_back(token);
 	}
 	return 0;
 }
