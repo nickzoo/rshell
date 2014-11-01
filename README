@@ -26,8 +26,8 @@ src/
 		parse.h
 		rshell.cpp
 tests/
-	exec.script
-	in
+	rshell
+	rshell.script
 
 ( Bugs: rshell )
 The cd command does nothing, and does not print an error.
