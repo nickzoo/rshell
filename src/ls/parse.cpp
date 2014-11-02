@@ -1,4 +1,6 @@
 #include <iostream>		//std::cerr, std::endl
+#include <errno.h>		//errno
+#include <stdio.h>		//perror
 #include <sys/stat.h>	//stat, st_mode, st_SIFDIR, S_IXUSR, ...
 #include "parse.h"		//File, FLAG_a, FLAG_l, FLAG_r
 
