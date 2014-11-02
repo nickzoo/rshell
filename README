@@ -33,4 +33,6 @@ tests/
 The cd command does nothing, and does not print an error.
 
 ( Bugs: ls )
+Only two types of files are recognized: regular files and directories.
+
 The year of a file is not displayed when it is more than 6 months old.

@@ -1,70 +1,77 @@
-#include <iomanip> //std::setw
-#include <iostream> //std::cout, std::cerr
-#include <sstream> //std::stringstream
-#include <string> //std::string
-#include <vector> //std::vector
-#include <dirent.h> //dirent, opendir, readdir
-#include <errno.h> //errno
-#include <grp.h> //getgrgid
-#include <pwd.h> //getpwuid
-#include <stdio.h> //perror, putchar
-#include <string.h> //strerror
-#include <sys/stat.h> //st_mode, st_mtime, S_IFDIR, S_IRUSR, ...
-#include <time.h> //time_t, tm
-#include "parse.h" //FLAG_a, FLAG_l, FLAG_R
+#include <iomanip>		//std::setw
+#include <iostream>		//std::cout, std::cerr
+#include <sstream>		//std::stringstream
+#include <string>		//std::string
+#include <vector>		//std::vector
+#include <dirent.h>		//dirent, opendir, readdir
+#include <grp.h>		//getgrgid
+#include <pwd.h>		//getpwuid
+#include <stdio.h>		//perror
+#include <string.h>		//strlen
+#include <sys/ioctl.h>	//winsize, ioctl
+#include <sys/stat.h>	//st_mode, st_mtime, S_IFDIR, S_IRUSR, ...
+#include <time.h>		//time_t, tm
+#include "parse.h"		//File, FLAG_a, FLAG_l, FLAG_r
 #include "execute.h"
 
-void execute(const std::vector<const char*> files,
-			 const std::vector<const char*> directories,
+void execute(const std::vector<File>& regular_files,
+			 const std::vector<File>& directories,
 			 int flags) {
-	print_files(files);
-	if (files.empty()) {
-		if (directories.empty())
-			print_directory(".", flags);
+	if (!regular_files.empty()) {
+		print_files(regular_files, flags);
+		for (size_t i = 0; i < directories.size(); ++i)
+			print_directory(directories[i], flags, true);
+	}
+	else {
+		if (directories.empty()) {
+			File current; current.name = "."; current.path = ".";
+			print_directory(current, flags);
+		}
 		else if (directories.size() == 1)
 			print_directory(directories[0], flags);
 		else {
-			std::cout << directories[0] << ": " << std::endl;
+			std::cout << directories[0].path << ": " << std::endl;
 			print_directory(directories[0], flags);
 			for (size_t i = 1; i < directories.size(); ++i)
 				print_directory(directories[i], flags, true);
 		}
 	}
-	else {
-		for (size_t i = 0; i < directories.size(); ++i)
-			print_directory(directories[i], flags, true);
-	}
 }
 
-void print_directory(const char *directory, int flags, bool extra) {
-	DIR *dir_ptr = opendir(directory);
+void print_directory(const File& directory, int flags, bool extra) {
+	DIR *dir_ptr = opendir(directory.path.c_str());
 	if (dir_ptr == NULL) {
 		perror("opendir");
 		return;
 	}
 	if (extra)
-		std::cout << std::endl << directory << ": " << std::endl;
-	std::vector<const char*> files;
-	std::vector<std::string> directory_paths;
-	std::vector<std::string> paths;
+		std::cout << std::endl << directory.path << ": " << std::endl;
+	std::vector<File> files;
+	std::vector<File> directories;
 	dirent *entry;
 	while ((entry = readdir(dir_ptr))) {
 		if (entry->d_name[0] != '.' || (flags & FLAG_a)) {
-			std::string path = directory;
+			File file;
+			std::string path = directory.path;
 			path += "/" + (std::string)entry->d_name;
-			paths.push_back(path);
-			files.push_back(entry->d_name);
+			file.name = entry->d_name;
+			file.path = path;
 			struct stat s;
-			if (stat(path.c_str(), &s) == 0) {
-				if (flags & FLAG_R) { //track directories if recursing
-					if (s.st_mode & S_IFDIR)
-						directory_paths.push_back(path);
+			if (stat(file.path.c_str(), &s) == 0) {
+				if (s.st_mode & S_IFDIR) {
+					file.name += '/';
+					file.color = BLUE;
+					if (flags & FLAG_R) directories.push_back(file);
 				}
+				else if (s.st_mode & S_IXUSR) {
+					file.name += '*';
+					file.color = GREEN;
+				}
+				else file.color = BLACK;
+				files.push_back(file);
 			}
-			else {
+			else
 				perror("stat");
-				return;
-			}
 		}
 	}
 	if (errno) {
@@ -75,98 +82,112 @@ void print_directory(const char *directory, int flags, bool extra) {
 		perror("closedir");
 		return;
 	}
-	if (flags & FLAG_l)
-		print_long(paths, files);
-	else
-		print_files(files);
-	if (flags & FLAG_R) {
-		for (size_t i = 0; i < directory_paths.size(); ++i) {
-			print_directory(directory_paths[i].c_str(), flags, true);
-		}
-	}
+	print_files(files, flags);
+	for (size_t i = 0; i < directories.size(); ++i)
+		print_directory(directories[i], flags, true);
 }
 
-void print_files(std::vector<const char*> files) {
-	for (size_t i = 0; i < files.size(); ++i)
-		std::cout << files[i] << std::endl;
+void print_files(const std::vector<File>& files, int flags) {
+	if (flags & FLAG_l) {
+		print_files_long(files); return;
+	}
+	struct winsize w;
+	ioctl(0, TIOCGWINSZ, &w);
+	int max_width = w.ws_col;
+	int n_rows = 1;
+	std::vector<int> column_width(files.size()+1);
+	while (n_rows < files.size()) {
+		int column = -1;
+		for (size_t i = 0; i < files.size(); ++i) {
+			if (i % n_rows == 0) ++column;
+			if (column_width[column] < files[i].name.size()+2)
+				column_width[column] = files[i].name.size()+2;
+		}
+		int total_width = 0;
+		for (size_t i = 0; column_width[i] != 0; ++i)
+			total_width += column_width[i];
+		if (total_width <= max_width) break;
+		for (size_t i = 0; column_width[i] != 0; ++i)
+			column_width[i] = 0;
+		++n_rows;
+	}
+	std::cout << std::left;
+	for (size_t i = 0; i < n_rows; ++i) {
+		for (size_t j = i; j < files.size(); j += n_rows) {
+			size_t column = j / n_rows;
+			std::cout << files[j].color;
+			std::cout << std::setw(column_width[column]) << files[j].name;
+		}
+		std::cout << BLACK << std::endl;
+	}
+	std::cout << std::right;
 }
 
-void print_long(std::vector<std::string> paths,
-				std::vector<const char*> files) {
-	const char* months[] = {"Jan", "Feb", "Mar", "Apr", "May", "Jun",
-		"Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
-	std::vector<std::string> permissions;
-	std::vector<nlink_t> links;
-	std::vector<const char*> users;
-	std::vector<const char*> groups;
-	std::vector<off_t> sizes;
-	size_t link_max = 0;
-	size_t user_max = 0;
-	size_t group_max = 0;
-	size_t size_max = 0;
-	std::vector<std::string> dates;
-	for (size_t i = 0; i < paths.size(); ++i) {
-		struct stat s;
-		if (stat(paths[i].c_str(), &s) == 0) {
-			std::stringstream ss;
-			std::string permission;
-			permission += (s.st_mode & S_IFDIR ? 'd' : '-');
-			permission += (s.st_mode & S_IRUSR ? 'r' : '-');
-			permission += (s.st_mode & S_IWUSR ? 'w' : '-');
-			permission += (s.st_mode & S_IXUSR ? 'x' : '-');
-			permission += (s.st_mode & S_IRGRP ? 'r' : '-');
-			permission += (s.st_mode & S_IWGRP ? 'w' : '-');
-			permission += (s.st_mode & S_IXGRP ? 'x' : '-');
-			permission += (s.st_mode & S_IROTH ? 'r' : '-');
-			permission += (s.st_mode & S_IWOTH ? 'w' : '-');
-			permission += (s.st_mode & S_IXOTH ? 'x' : '-');
-			permissions.push_back(permission);
-			ss << s.st_nlink; std::string slink = ss.str(); ss.str("");
-			if (link_max < slink.size()) link_max = slink.size();
-			links.push_back(s.st_nlink);
-			const char* user = getpwuid(s.st_uid)->pw_name;
-			if (user_max < strlen(user)) user_max = strlen(user);
-			users.push_back(user);
-			const char* group = getgrgid(s.st_gid)->gr_name;
-			if (group_max < strlen(group)) group_max = strlen(group);
-			groups.push_back(group);
-			ss << s.st_size; std::string ssize = ss.str(); ss.str("");
-			if (size_max < ssize.size()) size_max = ssize.size();
-			std::cout << "size max: " << size_max << std::endl;
-			sizes.push_back(s.st_size);
-			time_t mtime = s.st_mtime;
-			tm *ltm = localtime(&mtime);
-			std::string date;
-			date += months[ltm->tm_mon]; date += ' ';
-			if (ltm->tm_mday < 10) date += ' ';
-			ss << ltm->tm_mday << ' '; date += ss.str(); ss.str("");
-			if (ltm->tm_hour < 10) date += '0';
-			ss << ltm->tm_hour << ':'; date += ss.str(); ss.str("");
-			if (ltm->tm_min < 10) date += '0';
-			ss << ltm->tm_min; date += ss.str(); ss.str("");
-			dates.push_back(date);
-		}
-		else {
-			perror("stat");
-			return;
-		}
-	}
-	for (size_t i = 0; i < permissions.size(); ++i) {
-		std::cout << permissions[i] << ' '
-				  << std::setw(link_max) << links[i] << ' '
-				  << std::setw(user_max) << users[i] << ' '
-				  << std::setw(group_max) << groups[i] << ' '
-				  << std::setw(size_max) << sizes[i] << ' '
-				  << dates[i] << ' ';
-		struct stat s;
-		if (stat(paths[i].c_str(), &s) == 0) {
-			if (s.st_mode & S_IFDIR) std::cout << "\x1b[34m";
-			else if (s.st_mode & S_IXUSR) std::cout << "\x1b[32m";
-			std::cout << files[i] << "\x1b[0m" << std::endl;
-		}
-		else {
-			perror("stat");
-			return;
-		}
-	}
+void print_files_long(const std::vector<File>& files) {
+    const char* months[] = {"Jan", "Feb", "Mar", "Apr", "May", "Jun",
+        "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
+    std::vector<std::string> permissions;
+    std::vector<nlink_t> links;
+    std::vector<const char*> users;
+    std::vector<const char*> groups;
+    std::vector<off_t> sizes;
+    size_t link_max = 0;
+    size_t user_max = 0;
+    size_t group_max = 0;
+    size_t size_max = 0;
+    std::vector<std::string> dates;
+    for (size_t i = 0; i < files.size(); ++i) {
+        struct stat s;
+        if (stat(files[i].path.c_str(), &s) == 0) {
+            std::stringstream ss; 
+            std::string permission;
+            permission += (s.st_mode & S_IFDIR ? 'd' : '-');
+            permission += (s.st_mode & S_IRUSR ? 'r' : '-');
+            permission += (s.st_mode & S_IWUSR ? 'w' : '-');
+            permission += (s.st_mode & S_IXUSR ? 'x' : '-');
+            permission += (s.st_mode & S_IRGRP ? 'r' : '-');
+            permission += (s.st_mode & S_IWGRP ? 'w' : '-');
+            permission += (s.st_mode & S_IXGRP ? 'x' : '-');
+            permission += (s.st_mode & S_IROTH ? 'r' : '-');
+            permission += (s.st_mode & S_IWOTH ? 'w' : '-');
+            permission += (s.st_mode & S_IXOTH ? 'x' : '-');
+            permissions.push_back(permission);
+            ss << s.st_nlink; std::string slink = ss.str(); ss.str("");
+            if (link_max < slink.size()) link_max = slink.size();
+            links.push_back(s.st_nlink);
+            const char* user = getpwuid(s.st_uid)->pw_name;
+            if (user_max < strlen(user)) user_max = strlen(user);
+            users.push_back(user);
+            const char* group = getgrgid(s.st_gid)->gr_name;
+            if (group_max < strlen(group)) group_max = strlen(group);
+            groups.push_back(group);
+            ss << s.st_size; std::string ssize = ss.str(); ss.str("");
+            if (size_max < ssize.size()) size_max = ssize.size();
+            sizes.push_back(s.st_size);
+            time_t mtime = s.st_mtime;
+            tm *ltm = localtime(&mtime);
+            std::string date;
+            date += months[ltm->tm_mon]; date += ' ';
+            if (ltm->tm_mday < 10) date += ' ';
+            ss << ltm->tm_mday << ' '; date += ss.str(); ss.str("");
+            if (ltm->tm_hour < 10) date += '0';
+            ss << ltm->tm_hour << ':'; date += ss.str(); ss.str("");
+            if (ltm->tm_min < 10) date += '0';
+            ss << ltm->tm_min; date += ss.str(); ss.str("");
+            dates.push_back(date);
+        }
+        else {
+            perror("stat");
+            return;
+        }
+    }
+    for (size_t i = 0; i < files.size(); ++i) {
+        std::cout << permissions[i] << ' '
+                  << std::setw(link_max) << links[i] << ' '
+                  << std::setw(user_max) << users[i] << ' '
+                  << std::setw(group_max) << groups[i] << ' '
+                  << std::setw(size_max) << sizes[i] << ' '
+                  << dates[i] << ' ';
+		std::cout << files[i].color << files[i].name << BLACK << std::endl;
+    }
 }
