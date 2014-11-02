@@ -13,7 +13,7 @@ rshell:
 
 ls:
 	test -d bin || mkdir bin
-	$(CC) -g $(CFLAGS) $(LS_SOURCES) -o $(LS_EXECUTABLE)
+	$(CC) $(CFLAGS) $(LS_SOURCES) -o $(LS_EXECUTABLE)
 
 clean:
 	rm -rf bin

@@ -32,6 +32,8 @@ tests/
 ( Bugs: rshell )
 The cd command does nothing, and does not print an error.
 
+Special commands like <up> for history, <tab> for auto-complete, and <CTRL-U> to erase a line do not work.
+
 ( Bugs: ls )
 Only two types of files are recognized: regular files and directories.
 

@@ -6,8 +6,9 @@ int parse(int argc, const char *argv[],
 		  std::vector<File>& regular_files,
 		  std::vector<File>& directories,
 		  int& flags) {
+	bool options = true;
 	for (int i = 1; i < argc; ++i) {
-		if (argv[i][0] == '-') {
+		if (argv[i][0] == '-' && options) {
 			for (int j = 1; argv[i][j] != 0; ++j) {
 				if (argv[i][j] == 'a') flags |= FLAG_a;
 				else if (argv[i][j] == 'l') flags |= FLAG_l;
@@ -42,9 +43,14 @@ int parse(int argc, const char *argv[],
 			else {
 				std::cerr << "ls: " << argv[i] << ": ";
 				perror("");
-				return 1;
 			}
+			options = false;
 		}
+	}
+	if (errno) {
+		if (regular_files.size() == 0 && directories.size() == 0)
+			return 1;
+		errno = 0;
 	}
 	return 0;
 }

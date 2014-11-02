@@ -65,7 +65,10 @@ void print_directory(const File& directory, int flags, bool extra) {
 				if (s.st_mode & S_IFDIR) {
 					file.name += '/';
 					file.color = BLUE;
-					if (flags & FLAG_R) directories.push_back(file);
+					if (flags & FLAG_R &&
+							file.name != "./" && file.name != "../") {
+						directories.push_back(file);
+					}
 				}
 				else if (s.st_mode & S_IXUSR) {
 					file.name += '*';
