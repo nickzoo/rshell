@@ -133,6 +133,7 @@ void print_files(const std::vector<File>& files, int flags) {
 }
 
 void print_files_long(const std::vector<File>& files) {
+	blkcnt_t total_blocks = 0;
     const char* months[] = {"Jan", "Feb", "Mar", "Apr", "May", "Jun",
         "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
     std::vector<std::string> permissions;
@@ -148,6 +149,7 @@ void print_files_long(const std::vector<File>& files) {
     for (size_t i = 0; i < files.size(); ++i) {
         struct stat s;
         if (stat(files[i].path.c_str(), &s) == 0) {
+			total_blocks += s.st_blocks;
             std::stringstream ss; 
             std::string permission;
             permission += (s.st_mode & S_IFDIR ? 'd' : '-');
@@ -190,6 +192,7 @@ void print_files_long(const std::vector<File>& files) {
             return;
         }
     }
+	std::cout << "total " << total_blocks << std::endl;
     for (size_t i = 0; i < files.size(); ++i) {
         std::cout << permissions[i] << ' '
                   << std::setw(link_max) << links[i] << ' '
