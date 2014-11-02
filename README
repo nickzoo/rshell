@@ -1,6 +1,8 @@
 ( Overview )
 rshell is a command line shell that executes other programs using the fork, execvp, and wait system calls. Modeled after bash, it supports arguments, comments, quotation marks (single '' and double ""), an escape character (\), and the connectors ";", "||", and "&&".
 
+ls is a program that lists files. This version only recognizes the -a, -l, and -R options.
+
 ( Instructions )
 From command line:
 git clone https://github.com/nickzoo/rshell.git
@@ -26,13 +28,15 @@ src/
 		parse.h
 		rshell.cpp
 tests/
+	ls.script
+	ls.sh
 	rshell
 	rshell.script
 
 ( Bugs: rshell )
 The cd command does nothing, and does not print an error.
 
-Special commands like <up> for history, <tab> for auto-complete, and <CTRL-U> to erase a line do not work.
+Special commands like <up> for history, <tab> for auto-complete, and <CTRL-U> to delete a line do not work.
 
 ( Bugs: ls )
 Only two types of files are recognized: regular files and directories.
