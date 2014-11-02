@@ -71,15 +71,15 @@ echo ----------------
 
 echo "#illegal argument"
 echo "ls -0"
-ls -0
+bin/ls -0
 echo ----------------
 
 echo "#illegal argument and file"
 echo "ls -0 README"
-ls -0 README
+bin/ls -0 README
 echo ----------------
 
 echo "#ordering matters"
 echo "ls README -0"
-ls README -0
+bin/ls README -0
 echo ----------------
