@@ -203,10 +203,14 @@ void print_files_long(const std::vector<File>& files) {
 
 bool by_name(const File& left, const File& right) {
 	std::string upper_left, upper_right;
-	for (size_t i = 0; i < left.name.size(); ++i)
+	for (size_t i = 0; i < left.name.size(); ++i) {
+		if (left.name[i] == '.') continue;
 		upper_left += toupper(left.name[i]);
-	for (size_t i = 0; i < right.name.size(); ++i)
+	}
+	for (size_t i = 0; i < right.name.size(); ++i) {
+		if (right.name[i] == '.') continue;
 		upper_right += toupper(right.name[i]);
+	}
 	if (upper_left == upper_right) return left.name > right.name;
 	else return upper_left < upper_right;
 }
