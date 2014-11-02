@@ -4,6 +4,7 @@
 #include <string>		//std::string
 #include <vector>		//std::vector
 #include <dirent.h>		//dirent, opendir, readdir
+#include <errno.h>		//errno
 #include <grp.h>		//getgrgid
 #include <pwd.h>		//getpwuid
 #include <stdio.h>		//perror
@@ -94,8 +95,8 @@ void print_files(const std::vector<File>& files, int flags) {
 	struct winsize w;
 	ioctl(0, TIOCGWINSZ, &w);
 	int max_width = w.ws_col;
-	int n_rows = 1;
-	std::vector<int> column_width(files.size()+1);
+	size_t n_rows = 1;
+	std::vector<size_t> column_width(files.size()+1);
 	while (n_rows < files.size()) {
 		int column = -1;
 		for (size_t i = 0; i < files.size(); ++i) {
