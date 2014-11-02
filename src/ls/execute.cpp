@@ -1,3 +1,4 @@
+#include <algorithm>	//std::sort
 #include <iomanip>		//std::setw
 #include <iostream>		//std::cout, std::cerr
 #include <sstream>		//std::stringstream
@@ -15,9 +16,11 @@
 #include "parse.h"		//File, FLAG_a, FLAG_l, FLAG_r
 #include "execute.h"
 
-void execute(const std::vector<File>& regular_files,
-			 const std::vector<File>& directories,
+void execute(std::vector<File>& regular_files,
+			 std::vector<File>& directories,
 			 int flags) {
+	std::sort(regular_files.begin(), regular_files.end(), by_name);
+	std::sort(directories.begin(), directories.end(), by_name);
 	if (!regular_files.empty()) {
 		print_files(regular_files, flags);
 		for (size_t i = 0; i < directories.size(); ++i)
@@ -83,6 +86,8 @@ void print_directory(const File& directory, int flags, bool extra) {
 		perror("closedir");
 		return;
 	}
+	std::sort(files.begin(), files.end(), by_name);
+	std::sort(directories.begin(), directories.end(), by_name);
 	print_files(files, flags);
 	for (size_t i = 0; i < directories.size(); ++i)
 		print_directory(directories[i], flags, true);
@@ -191,4 +196,14 @@ void print_files_long(const std::vector<File>& files) {
                   << dates[i] << ' ';
 		std::cout << files[i].color << files[i].name << BLACK << std::endl;
     }
+}
+
+bool by_name(const File& left, const File& right) {
+	std::string upper_left, upper_right;
+	for (size_t i = 0; i < left.name.size(); ++i)
+		upper_left += toupper(left.name[i]);
+	for (size_t i = 0; i < right.name.size(); ++i)
+		upper_right += toupper(right.name[i]);
+	if (upper_left == upper_right) return left.name > right.name;
+	else return upper_left < upper_right;
 }
