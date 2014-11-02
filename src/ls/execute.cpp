@@ -60,11 +60,14 @@ void print_directory(const File& directory, int flags, bool extra) {
 			path += "/" + (std::string)entry->d_name;
 			file.name = entry->d_name;
 			file.path = path;
+			if (entry->d_name[0] == '.') {
+				file.color += GRAY_BACKGROUND;
+			}
 			struct stat s;
 			if (stat(file.path.c_str(), &s) == 0) {
 				if (s.st_mode & S_IFDIR) {
 					file.name += '/';
-					file.color = BLUE;
+					file.color += BLUE;
 					if (flags & FLAG_R &&
 							file.name != "./" && file.name != "../") {
 						directories.push_back(file);
@@ -72,9 +75,9 @@ void print_directory(const File& directory, int flags, bool extra) {
 				}
 				else if (s.st_mode & S_IXUSR) {
 					file.name += '*';
-					file.color = GREEN;
+					file.color += GREEN;
 				}
-				else file.color = BLACK;
+				else file.color += BLACK;
 				files.push_back(file);
 			}
 			else
@@ -120,16 +123,16 @@ void print_files(const std::vector<File>& files, int flags) {
 			column_width[i] = 0;
 		++n_rows;
 	}
-	std::cout << std::left;
 	for (size_t i = 0; i < n_rows; ++i) {
 		for (size_t j = i; j < files.size(); j += n_rows) {
 			size_t column = j / n_rows;
 			std::cout << files[j].color;
-			std::cout << std::setw(column_width[column]) << files[j].name;
+			std::cout << files[j].name << BLACK
+				<< std::setw(column_width[column]-files[j].name.size())
+				<< " ";
 		}
-		std::cout << BLACK << std::endl;
+		std::cout << std::endl;
 	}
-	std::cout << std::right;
 }
 
 void print_files_long(const std::vector<File>& files) {

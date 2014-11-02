@@ -10,6 +10,7 @@
 
 #define BLUE "\x1b[34m"
 #define GREEN "\x1b[32m"
+#define GRAY_BACKGROUND "\x1b[47m"
 #define BLACK "\x1b[0m"
 
 struct File {

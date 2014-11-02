@@ -28,17 +28,19 @@ int parse(int argc, const char *argv[],
 				File file;
 				file.name = argv[i];
 				file.path = argv[i];
+				if (file.name[0] == '.')
+					file.color += GRAY_BACKGROUND;
 				if (s.st_mode & S_IFDIR) {
 					file.name += '/';
-					file.color = BLUE;
+					file.color += BLUE;
 					directories.push_back(file);
 				}
 				else {
 					if (s.st_mode & S_IXUSR) {
 						file.name += '*';
-						file.color = GREEN;
+						file.color += GREEN;
 					}
-					else file.color = BLACK;
+					else file.color += BLACK;
 					regular_files.push_back(file);
 				}
 			}
