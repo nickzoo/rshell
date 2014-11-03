@@ -4,8 +4,10 @@ RSHELL_SOURCES = src/rshell/rshell.cpp src/rshell/parse.cpp src/rshell/execute.c
 RSHELL_EXECUTABLE = bin/rshell
 LS_SOURCES = src/ls/ls.cpp src/ls/parse.cpp src/ls/execute.cpp
 LS_EXECUTABLE = bin/ls
+CP_SOURCES = src/cp/cp.cpp
+CP_EXECUTABLE = bin/cp
 
-all: rshell ls
+all: rshell ls cp
 
 rshell:
 	test -d bin || mkdir bin
@@ -14,6 +16,10 @@ rshell:
 ls:
 	test -d bin || mkdir bin
 	$(CC) $(CFLAGS) $(LS_SOURCES) -o $(LS_EXECUTABLE)
+
+cp:
+	test -d bin || mkdir bin
+	$(CC) $(CFLAGS) $(CP_SOURCES) -o $(CP_EXECUTABLE)
 
 clean:
 	rm -rf bin
