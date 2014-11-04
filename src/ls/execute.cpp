@@ -124,9 +124,19 @@ void print_files(const std::vector<File>& files, int flags) {
 		for (size_t j = i; j < files.size(); j += n_rows) {
 			size_t column = j / n_rows;
 			std::cout << files[j].color;
-			std::cout << files[j].name << BLACK
-				<< std::setw(column_width[column]-files[j].name.size())
-				<< " ";
+			struct stat s;
+			if (stat(files[i].path.c_str(), &s) == 0) {
+				if (s.st_mode & (S_IFDIR | S_IXUSR)) {
+					std::cout << files[j].name.substr(0,
+						files[j].name.size()-1) << BLACK
+						<< files[j].name[files[j].name.size()-1];
+				}
+				else {
+					std::cout << files[j].name << BLACK;
+				}
+				std::cout << std::setw(column_width[column] -
+						files[j].name.size()) << " ";
+			}
 		}
 		std::cout << std::endl;
 	}
