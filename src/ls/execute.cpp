@@ -4,6 +4,7 @@
 #include <sstream>		//std::stringstream
 #include <string>		//std::string
 #include <vector>		//std::vector
+#include <ctype.h>		//isalnum
 #include <dirent.h>		//dirent, opendir, readdir
 #include <errno.h>		//errno
 #include <grp.h>		//getgrgid
@@ -29,14 +30,15 @@ void execute(std::vector<File>& regular_files,
 	else {
 		if (directories.empty()) {
 			File current; current.name = "."; current.path = ".";
-			print_directory(current, flags);
+			bool extra = flags & FLAG_R;
+			print_directory(current, flags, extra);
 		}
-		else if (directories.size() == 1)
-			print_directory(directories[0], flags);
+		else if (directories.size() == 1) {
+			bool extra = flags & FLAG_R;
+			print_directory(directories[0], flags, extra);
+		}
 		else {
-			std::cout << directories[0].path << ": " << std::endl;
-			print_directory(directories[0], flags);
-			for (size_t i = 1; i < directories.size(); ++i)
+			for (size_t i = 0; i < directories.size(); ++i)
 				print_directory(directories[i], flags, true);
 		}
 	}
@@ -217,12 +219,12 @@ void print_files_long(const std::vector<File>& files) {
 bool by_name(const File& left, const File& right) {
 	std::string upper_left, upper_right;
 	for (size_t i = 0; i < left.name.size(); ++i) {
-		if (left.name[i] == '.') continue;
-		upper_left += toupper(left.name[i]);
+		if (isalnum(left.name[i]))
+			upper_left += toupper(left.name[i]);
 	}
 	for (size_t i = 0; i < right.name.size(); ++i) {
-		if (right.name[i] == '.') continue;
-		upper_right += toupper(right.name[i]);
+		if (isalnum(right.name[i]))
+			upper_right += toupper(right.name[i]);
 	}
 	if (upper_left == upper_right) return left.name > right.name;
 	else return upper_left < upper_right;
