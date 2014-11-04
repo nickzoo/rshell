@@ -60,9 +60,6 @@ void print_directory(const File& directory, int flags, bool extra) {
 			path += "/" + (std::string)entry->d_name;
 			file.name = entry->d_name;
 			file.path = path;
-			if (entry->d_name[0] == '.') {
-				file.color += GRAY_BACKGROUND;
-			}
 			struct stat s;
 			if (stat(file.path.c_str(), &s) == 0) {
 				if (s.st_mode & S_IFDIR) {

@@ -8,9 +8,8 @@
 #define FLAG_l 2
 #define FLAG_R 4
 
-#define BLUE "\x1b[34m"
-#define GREEN "\x1b[32m"
-#define GRAY_BACKGROUND "\x1b[47m"
+#define BLUE "\x1b[34;1m"
+#define GREEN "\x1b[32;1m"
 #define BLACK "\x1b[0m"
 
 struct File {

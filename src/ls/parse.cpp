@@ -27,8 +27,6 @@ int parse(int argc, const char *argv[],
 				File file;
 				file.name = argv[i];
 				file.path = argv[i];
-				if (file.name[0] == '.')
-					file.color += GRAY_BACKGROUND;
 				if (s.st_mode & S_IFDIR) {
 					file.name += '/';
 					file.color += BLUE;
