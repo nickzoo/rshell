@@ -15,6 +15,9 @@ LICENSE
 Makefile
 README
 src/
+	cp/
+		cp.cpp
+		Timer.h
 	ls/
 		execute.cpp
 		execute.h
