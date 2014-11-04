@@ -1,9 +1,15 @@
 ( Overview )
-rshell is a command line shell that executes other programs using the fork, execvp, and wait system calls. Modeled after bash, it supports arguments, comments, quotation marks (single '' and double ""), the escape character "\", and the connectors ";", "||", and "&&".
+rshell is a command line shell that executes other programs using the fork,
+execvp, and wait system calls. Modeled after bash, it supports arguments,
+comments, quotation marks (single '' and double ""), the escape character
+"\", and the connectors ";", "||", and "&&".
 
-ls is a program that lists files. This version only recognizes the -a, -l, and -R options.
+ls is a program that lists files. This version only recognizes the -a, -l,
+and -R options.
 
-cp is a program that copies a file. This version only recognizes a -t option. If -t is passed, the program will time different methods of copying a file and print the results.
+cp is a program that copies a file. This version only recognizes a -t
+option. If -t is passed, the program will time different methods of copying
+a file and print the results.
 
 ( Instructions )
 From command line:
@@ -41,7 +47,8 @@ tests/
 ( Bugs: rshell )
 The cd command does nothing, and does not print an error.
 
-Special commands like <up> for history, <tab> for auto-complete, and <CTRL-U> to delete a line do not work.
+Special commands like <up> for history, <tab> for auto-complete, and
+<CTRL-U> to delete a line do not work.
 
 ( Bugs: ls )
 Only two types of files are recognized: regular files and directories.
@@ -49,4 +56,5 @@ Only two types of files are recognized: regular files and directories.
 The year of a file is not displayed when it is more than 6 months old.
 
 ( Bugs: cp )
-Passing a directory as the destination will cause an error instead of copying the file into the directory.
+Passing a directory as the destination will cause an error instead of
+copying the file into the directory.
