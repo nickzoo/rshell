@@ -1,11 +1,12 @@
-#include <fstream>
-#include <iostream>
-#include <errno.h>
-#include <fcntl.h>
-#include <stdio.h>
-#include <sys/stat.h>
+#include <fstream>		//std::ifstream, std::ofstream
+#include <iostream>		//std::cout, std::cerr
+#include <errno.h>		//errno
+#include <fcntl.h>		//O_CREAT, O_RDONLY, O_WRONLY
+#include <stdio.h>		//perror
+#include <string.h>		//strcmp
+#include <sys/stat.h>	//stat
 #include <time.h>
-#include <unistd.h>
+#include <unistd.h>		//read, write, close
 #include "Timer.h"
 
 void copy1(char *i_name, char *o_name) {
@@ -82,38 +83,28 @@ void copy3(char *i_name, char *o_name) {
 void time_functions(char *i_name, char *o_name) {
 	std::cout << std::endl;
 	Timer t;
-	double wallclock_time, user_time, system_time;
 
 	t.start();
 	copy1(i_name, o_name);
-	t.elapsedWallclockTime(wallclock_time);
-	t.elapsedUserTime(user_time);
-	t.elapsedSystemTime(system_time);
-	std::cout << "wallclock time: " << wallclock_time << std::endl;
-	std::cout << "user time: " << user_time << std::endl;
-	std::cout << "system time: " << system_time << std::endl;
+	t.stop();
+	std::cout << "ifstream::get and ostream::put one character at a time\n";
+	t.print();
 	std::cout << std::endl;
 	remove(o_name);
 
 	t.start();
 	copy2(i_name, o_name);
-	t.elapsedWallclockTime(wallclock_time);
-	t.elapsedUserTime(user_time);
-	t.elapsedSystemTime(system_time);
-	std::cout << "wallclock time: " << wallclock_time << std::endl;
-	std::cout << "user time: " << user_time << std::endl;
-	std::cout << "system time: " << system_time << std::endl;
+	t.stop();
+	std::cout << "read and write one character at a time\n";
+	t.print();
 	std::cout << std::endl;
 	remove(o_name);
 
 	t.start();
 	copy3(i_name, o_name);
-	t.elapsedWallclockTime(wallclock_time);
-	t.elapsedUserTime(user_time);
-	t.elapsedSystemTime(system_time);
-	std::cout << "wallclock time: " << wallclock_time << std::endl;
-	std::cout << "user time: " << user_time << std::endl;
-	std::cout << "system time: " << system_time << std::endl;
+	t.stop();
+	std::cout << "read and write one buffer at a time\n";
+	t.print();
 	std::cout << std::endl;
 }
 
@@ -126,14 +117,23 @@ inline bool file_exists(const char *name) {
 
 int main(int argc, char *argv[]) {
 	if (argc != 3 && argc != 4) {
-		std::cerr << "incorrect number of arguments\n";
+		std::cerr << "illegal number of arguments\n";
 		return 1;
 	}
-	if (file_exists(argv[2])) {
+	if ((argc == 3 && file_exists(argv[2])) ||
+		(argc == 4 && file_exists(argv[3]))) {
 		std::cerr << "destination file already exists\n";
 		return 1;
 	}
-	if (argc == 4) time_functions(argv[1], argv[2]);
+	if (argc == 4) {
+		if (strcmp(argv[1], "-t") == 0) {
+			time_functions(argv[2], argv[3]);
+		}
+		else {
+			std::cerr << "illegal usage\n";
+			return 1;
+		}
+	}
 	else copy3(argv[1], argv[2]);
 	return 0;
 }

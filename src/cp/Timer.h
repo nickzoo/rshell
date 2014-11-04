@@ -1,93 +1,50 @@
-
-/* C++ interface for program benchmark timer management. */
-
-#include <stdlib.h>
+#include <iostream>
 #include <sys/time.h>
 #include <sys/resource.h>
 
-// extern "C" int gettimeofday(timeval *tp, void *tzp);
-// extern "C" int getrusage(int who, struct rusage *rusag);
+#define MICROSECONDS 1000000.0
 
-class Timer
-{
+class Timer {
 public:
-    int start();
-    int elapsedWallclockTime (double &);
-    int elapsedUserTime (double &);
-    int elapsedSystemTime (double &);
-    int elapsedTime (double &wc, double &us, double &system);
+	void start();
+	void stop();
+	double wallclock_time();
+	double user_time();
+	double system_time();
+	void print();
 
 private:
-    rusage old_us_time;
-    rusage new_us_time;
-    timeval old_wc_time;
-    timeval new_wc_time;
+	struct rusage r_start, r_stop;
+	struct timeval t_start, t_stop;
 };
 
-
-int
-Timer::start()
-{
-    if (gettimeofday (&this->old_wc_time, 0) == -1
-        || getrusage (RUSAGE_SELF, &this->old_us_time) == -1)
-        return -1;
-    else
-        return 0;
+void Timer::start() {
+	gettimeofday(&t_start, 0);
+	getrusage(RUSAGE_SELF, &r_start);
 }
 
-int
-Timer::elapsedWallclockTime (double &wc)
-{
-    if (gettimeofday (&this->new_wc_time, 0) == -1)
-        return -1;
-    wc = (this->new_wc_time.tv_sec - this->old_wc_time.tv_sec) 
-         + (this->new_wc_time.tv_usec - this->old_wc_time.tv_usec) / 1000000.0;
-    return 0;
+void Timer::stop() {
+	gettimeofday(&t_stop, 0);
+	getrusage(RUSAGE_SELF, &r_stop);
 }
 
-int
-Timer::elapsedUserTime (double &ut)
-{
-    if (getrusage (RUSAGE_SELF, &this->new_us_time) == -1)
-        return -1;
-
-    ut = (this->new_us_time.ru_utime.tv_sec - this->old_us_time.ru_utime.tv_sec) 
-        + ((this->new_us_time.ru_utime.tv_usec
-            - this->old_us_time.ru_utime.tv_usec) / 1000000.0);
-    return 0;
+double Timer::wallclock_time() {
+	return (t_stop.tv_sec - t_start.tv_sec) +
+		(t_stop.tv_usec - t_start.tv_usec)/MICROSECONDS;
 }
 
-int
-Timer::elapsedSystemTime (double &st)
-{
-    if (getrusage (RUSAGE_SELF, &this->new_us_time) == -1)
-        return -1;
-
-    st = (this->new_us_time.ru_stime.tv_sec - this->old_us_time.ru_stime.tv_sec) 
-        + ((this->new_us_time.ru_stime.tv_usec
-            - this->old_us_time.ru_stime.tv_usec) / 1000000.0);
-    return 0;
+double Timer::user_time() {
+	return (r_stop.ru_utime.tv_sec - r_start.ru_utime.tv_sec) +
+		(r_stop.ru_utime.tv_usec - r_start.ru_utime.tv_usec)/MICROSECONDS;
 }
 
-int
-Timer::elapsedTime (double &wallclock, double &user_time, double &system_time)
-{
-    if (this->elapsedWallclockTime (wallclock) == -1)
-        return -1;
-    else
-        {
-            if (getrusage (RUSAGE_SELF, &this->new_us_time) == -1)
-        return -1;
-            user_time = (this->new_us_time.ru_utime.tv_sec
-                - this->old_us_time.ru_utime.tv_sec)
-        + ((this->new_us_time.ru_utime.tv_usec
-            - this->old_us_time.ru_utime.tv_usec) / 1000000.0);
-            
-            system_time = (this->new_us_time.ru_stime.tv_sec
-                - this->old_us_time.ru_stime.tv_sec) 
-        + ((this->new_us_time.ru_stime.tv_usec
-            - this->old_us_time.ru_stime.tv_usec) / 1000000.0);
+double Timer::system_time() {
+	return (r_stop.ru_stime.tv_sec - r_start.ru_stime.tv_sec) +
+		(r_stop.ru_stime.tv_usec - r_start.ru_stime.tv_usec)/MICROSECONDS;
+}
 
-            return 0;
-        }
+void Timer::print() {
+	std::cout << "wallclock time: " << wallclock_time() << std::endl;
+	std::cout << "user time: " << user_time() << std::endl;
+	std::cout << "system time: " << system_time() << std::endl;
 }
