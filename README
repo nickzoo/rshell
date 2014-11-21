@@ -2,7 +2,7 @@
 rshell is a command line shell that executes other programs using the fork,
 execvp, and wait system calls. Modeled after bash, it supports arguments,
 comments, quotation marks (single '' and double ""), the escape character
-"\", and the connectors ";", "||", and "&&".
+"\", the connectors ";", "||", and "&&", input redirection via "<", ">", ">>", and piping ("|").
 
 ls is a program that lists files. This version only recognizes the -a, -l,
 and -R options.
@@ -23,6 +23,8 @@ LICENSE
 Makefile
 README
 src/
+	rshell.cpp
+	rshell.h
 	cp/
 		cp.cpp
 		Timer.h
@@ -32,15 +34,10 @@ src/
 		ls.cpp
 		parse.cpp
 		parse.h
-	rshell/
-		execute.cpp
-		execute.h
-		parse.cpp
-		parse.h
-		rshell.cpp
 tests/
 	ls.script
 	ls.sh
+	pipe.script
 	rshell
 	rshell.script
 
@@ -49,6 +46,8 @@ The cd command does nothing, and does not print an error.
 
 Special commands like <up> for history, <tab> for auto-complete, and
 <CTRL-U> to delete a line do not work.
+
+Ending a line with "|" does not prompt for further input.
 
 ( Bugs: ls )
 Only two types of files are recognized: regular files and directories.
