@@ -20,12 +20,28 @@ private:
 
 void Timer::start() {
 	gettimeofday(&t_start, 0);
+	if (errno) {
+		perror("gettimeofday");
+		return;
+	}
 	getrusage(RUSAGE_SELF, &r_start);
+	if (errno) {
+		perror("getrusage");
+		return;
+	}
 }
 
 void Timer::stop() {
 	gettimeofday(&t_stop, 0);
+	if (errno) {
+		perror("gettimeofday");
+		return;
+	}
 	getrusage(RUSAGE_SELF, &r_stop);
+	if (errno) {
+		perror("getrusage");
+		return;
+	}
 }
 
 double Timer::wallclock_time() {

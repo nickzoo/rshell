@@ -66,8 +66,7 @@ void copy3(char *i_name, char *o_name) {
 		if (errno) {
 			perror("read");
 			break;
-		}
-		if (write(o_file, buf, bytes_read) == -1) {
+		} if (write(o_file, buf, bytes_read) == -1) {
 			perror("write");
 			break;
 		}
