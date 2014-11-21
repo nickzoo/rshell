@@ -1,0 +1,53 @@
+Script started on Thu 20 Nov 2014 10:55:17 PM PST
+~
+lxu003@hammer $ cd cs100/rshell/
+~/cs100/rshell
+lxu003@hammer $ bin/rshell 
+lxu003@hammer.cs.ucr.edu$ echo hello > file1
+lxu003@hammer.cs.ucr.edu$ cat < file1
+hello
+lxu003@hammer.cs.ucr.edu$ cat < file1 > file2
+lxu003@hammer.cs.ucr.edu$ cat file2
+hello
+lxu003@hammer.cs.ucr.edu$ cat > file3 < file1
+lxu003@hammer.cs.ucr.edu$ cat file3
+hello
+lxu003@hammer.cs.ucr.edu$ echo hello >> file1
+lxu003@hammer.cs.ucr.edu$ cat file1
+hello
+hello
+lxu003@hammer.cs.ucr.edu$ ls -l
+total 24
+drwx------ 2 lxu003 csmajs 4096 Nov 20 22:49 bin
+-rw------- 1 lxu003 csmajs   12 Nov 20 22:54 file1
+-rw------- 1 lxu003 csmajs    6 Nov 20 22:54 file2
+-rw------- 1 lxu003 csmajs    6 Nov 20 22:54 file3
+-rw------- 1 lxu003 csmajs 1075 Nov 20 22:48 LICENSE
+-rw------- 1 lxu003 csmajs  544 Nov 20 22:49 Makefile
+-rw------- 1 lxu003 csmajs 1369 Nov 20 22:48 README
+drwx------ 4 lxu003 csmajs 4096 Nov 20 22:48 src
+drwx------ 2 lxu003 csmajs 4096 Nov 20 22:54 tests
+lxu003@hammer.cs.ucr.edu$ ls -l | head -3
+total 24
+drwx------ 2 lxu003 csmajs 4096 Nov 20 22:49 bin
+-rw------- 1 lxu003 csmajs   12 Nov 20 22:54 file1
+lxu003@hammer.cs.ucr.edu$ ls -l | head -3 | tail -1
+-rw------- 1 lxu003 csmajs   12 Nov 20 22:54 file1
+lxu003@hammer.cs.ucr.edu$ cat < file1 | cat > file2
+lxu003@hammer.cs.ucr.edu$ cat file2
+hello
+hello
+lxu003@hammer.cs.ucr.edu$ cat<hello1      file1
+hello
+hello
+lxu003@hammer.cs.ucr.edu$ echo bye>file1
+lxu003@hammer.cs.ucr.edu$ cat file1
+bye
+lxu003@hammer.cs.ucr.edu$ c eh cho cat|cat|cat|cat|cat
+cat
+lxu003@hammer.cs.ucr.edu$ exit
+~/cs100/rshell
+lxu003@hammer $ exit
+exit
+
+Script done on Thu 20 Nov 2014 10:57:44 PM PST
