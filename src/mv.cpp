@@ -2,7 +2,6 @@
 #include <sys/stat.h>
 #include <unistd.h>
 #include <string>
-#include "rm.h"
 using namespace std;
 
 int main(int argc, char *argv[]) {
