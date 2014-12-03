@@ -145,7 +145,7 @@ int parse_token(string& line, size_t& i, size_t& j, string& token) {
 		return 0;
 	}
 	if (i < line.size()-1 && ((line[i] == '&' && line[i+1] == '&') ||
-	line[i] == '|' && line[i+1] == '|')) {
+	(line[i] == '|' && line[i+1] == '|'))) {
 		string connector = line[i] == '&' ? "&&" : "||";
 		if (cmds[j].argv.empty()) {
 			cerr << "syntax error: token '" << connector << "'" << endl;
@@ -180,7 +180,7 @@ int parse_token(string& line, size_t& i, size_t& j, string& token) {
 		if (line[i] == '<' || line[i] == '>' ||
 		line[i] == '|' || line[i] == ';' || (i < line.size()-1 &&
 		((line[i] == '&' && line[i+1] == '&') ||
-		  line[i] == '|' && line[i+1] == '|')))
+		  (line[i] == '|' && line[i+1] == '|'))))
 			break;
 		token += line[i++];
 	}
@@ -377,6 +377,6 @@ char** c_compatible(vector<string> argv) {
 }
 
 // prevent memory leak
-void c_delete(int argc, char **c_argv) {
+void c_delete(size_t argc, char **c_argv) {
 	for (size_t i = 0; i < argc; ++i) delete[] c_argv[i];
 }
