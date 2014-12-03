@@ -246,7 +246,7 @@ void moreinput(string& line) {
 }
 
 char** c_compatible(vector<string> argv);
-void c_delete(int argc, char **argv);
+void c_delete(size_t argc, char **argv);
 
 int execute() {
 	// initialize
