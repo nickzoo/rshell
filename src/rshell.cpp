@@ -49,18 +49,19 @@ int main() {
 	for (size_t i = 0; i < directories.size(); ++i) {
 		DIR *dirptr = opendir(directories[i]);
 		if (dirptr == NULL) {
-			perror("opendir"); continue;
+			continue;
 		}
 		dirent *entry;
 		while ((entry = readdir(dirptr)))
 			pmap[entry->d_name] = directories[i];
 		if (errno) {
-			perror("readdir"); return 1;
+			continue;
 		}
 		if (closedir(dirptr) == -1) {
-			perror("closedir"); return 1;
+			continue;
 		}
 	}
+	if (errno) perror("");
 
 	// initialize signal handler
 	if (signal(SIGINT, interrupthandler) == SIG_ERR) {
