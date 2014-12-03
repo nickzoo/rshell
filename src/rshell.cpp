@@ -49,7 +49,7 @@ int main() {
 	for (size_t i = 0; i < directories.size(); ++i) {
 		DIR *dirptr = opendir(directories[i]);
 		if (dirptr == NULL) {
-			perror("opendir"); continue;
+			perror("opendir"); errno = 0; continue;
 		}
 		dirent *entry;
 		while ((entry = readdir(dirptr)))
