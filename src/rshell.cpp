@@ -347,7 +347,7 @@ int execute() {
 
 			// execute
 			execv(c_argv[0], c_argv);
-			perror("execvp"); exit(1);
+			perror("execv"); exit(1);
 		}
 		else {
 			// close parent pipe if being piped to and wait
