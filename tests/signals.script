@@ -1,0 +1,39 @@
+Script started on Fri 05 Dec 2014 07:37:26 AM PST
+~
+lxu003@hammer $ cd cs100/rshell/
+~/cs100/rshell
+lxu003@hammer $ make rshell
+test -d bin || mkdir bin
+g++ -Wall -Werror -ansi -pedantic src/rshell.cpp -o bin/rshell
+bi~/cs100/rshell
+lxu003@hammer $ bin/rshell
+No such file or directory
+/home/csmajs/lxu003/cs100/rshell$ ls
+bin  LICENSE  Makefile	README	src  tests
+/home/csmajs/lxu003/cs100/rshell$ bin/rshell
+No such file or directory
+/home/csmajs/lxu003/cs100/rshell$ ls;pwad
+bin  LICENSE  Makefile	README	src  tests
+execv: No such file or directory
+/home/csmajs/lxu003/cs100/rshell$ ls;pwd
+bin  LICENSE  Makefile	README	src  tests
+/home/csmajs/lxu003/cs100/rshell
+/home/csmajs/lxu003/cs100/rshell$ exit
+/home/csmajs/lxu003/cs100/rshell$ ls^Cls
+bin  LICENSE  Makefile	README	src  tests
+/home/csmajs/lxu003/cs100/rshell$ cat
+hello
+hello
+^C/home/csmajs/lxu003/cs100/rshell$ cd ..
+/home/csmajs/lxu003/cs100$ cd /
+/$ ls
+bin	C:\nppdf32Log\debuglog.txt  home	media  opt   selinux  usr
+boot	dev			    lib		misc   proc  srv      var
+cgroup	etc			    lib64	mnt    root  sys
+class	extra			    lost+found	net    sbin  tmp
+/$ exit
+~/cs100/rshell
+lxu003@hammer $ exit
+exit
+
+Script done on Fri 05 Dec 2014 07:38:27 AM PST
