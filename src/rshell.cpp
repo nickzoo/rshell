@@ -1,6 +1,7 @@
 #include <iostream>
 #include <map>
 #include <string>
+#include <sstream>
 #include <vector>
 #include <dirent.h>		// dirent, opendir, readdir, closedir
 #include <errno.h>		// errno
@@ -38,16 +39,19 @@ int main() {
 	if (path == NULL) {
 		cerr << "PATH not found" << endl; return 1;
 	}
-	vector<char*> directories;
-	char *token = strtok(path, ":");
+	vector<string> directories;
+	stringstream ss(path); string s;
+	while (getline(ss, s, ':')) directories.push_back(s);
+
+	/*char *token = strtok(path, ":");
 	while (token) {
 		directories.push_back(token);
 		token = strtok(NULL, ":");
-	}
+	}*/
 
 	// populate pmap (path map)
 	for (size_t i = 0; i < directories.size(); ++i) {
-		DIR *dirptr = opendir(directories[i]);
+		DIR *dirptr = opendir(directories[i].c_str());
 		if (dirptr == NULL) {
 			continue;
 		}
